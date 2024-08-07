@@ -2,36 +2,39 @@ import pandas as pd
 import random
 
 
-df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/AIProject/prepared-food-data.csv')
+
 total = ['carbs','proteins','fats']
 
 def matchConstraint(i,selected_data):
     global total
     match total[i]:
         case 'carbs':
-            filtered_df = df[df['carbohydrate'] >= 35]
-            total_protein = selected_data['protein'].sum()
-            id_=selected_data['id']
-            total_fat = selected_data['fat'].sum()
-            total_carbohydrate = selected_data['carbohydrate'].sum()
-            return filtered_df,total_protein,total_carbohydrate,total_fat
+            
+                filtered_df = selected_data[selected_data['carbohydrate'] >= 35]
+                total_protein = filtered_df['protein'].sum()
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()    
+                return filtered_df,total_protein,total_carbohydrate,total_fat
         case 'proteins':
-            filtered_df = df[df['protein'] >= 45]
-            id_=selected_data['id']
-            total_protein = selected_data['protein'].sum()
-            total_fat = selected_data['fat'].sum()
-            total_carbohydrate = selected_data['carbohydrate'].sum()
-            return filtered_df,total_protein,total_carbohydrate,total_fat
+            
+                filtered_df = selected_data[selected_data['protein'] >= 45]
+                
+                total_protein = filtered_df['protein'].sum()
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()
+                return filtered_df,total_protein,total_carbohydrate,total_fat
         case 'fats':
-            filtered_df = df[df['fat'] >= 35]
-            total_protein = selected_data['protein'].sum()
-            id_=selected_data['id']
-            total_fat = selected_data['fat'].sum()
-            total_carbohydrate = selected_data['carbohydrate'].sum()
-            return filtered_df,total_protein,total_carbohydrate,total_fat,id_
+            
+                filtered_df = selected_data[selected_data['fat'] >= 35]
+                total_protein = filtered_df['protein'].sum()
+                
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()  
+                return filtered_df,total_protein,total_carbohydrate,total_fat,
         
         
-def calculate_difference(combination, target_protein, target_fat, target_carbohydrate,i):
+def calculate_difference(combination, target_protein, target_fat, target_carbohydrate,i,df):
+   
     selected_data = df.iloc[combination]
     global total
     # Calcola la somma delle proprietà selezionate
@@ -49,6 +52,7 @@ def calculate_difference(combination, target_protein, target_fat, target_carbohy
     return total_diff, total_protein, total_fat, total_carbohydrate, selected_data['description'].tolist()
 
 def find_best_combination(target_protein, target_fat, target_carbohydrate, num_combinations, comb_size):
+    df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv')
     global total
     min_diff = float('inf')
     best_combination = None
@@ -74,7 +78,7 @@ def find_best_combination(target_protein, target_fat, target_carbohydrate, num_c
 
         try:
             diff, total_protein, total_fat, total_carbohydrate, descriptions = calculate_difference(
-                combination, target_protein, target_fat, target_carbohydrate, i
+                combination, target_protein, target_fat, target_carbohydrate, i,df
             )
             if diff < min_diff:
                 min_diff = diff

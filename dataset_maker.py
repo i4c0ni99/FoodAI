@@ -1,6 +1,10 @@
 import pandas as pd
-
+import os 
 # Dizionario delle categorie generiche
+input_csv_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/food-data.csv'
+output_csv_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data.csv'
+output_csv_path_teporary='/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv'
+
 
 generic_categories = {
 
@@ -105,6 +109,27 @@ def get_generic_category(category):
             return key
     return 'other'
 
+def filter_csv_by_category(aliments):
+    df = pd.read_csv(output_csv_path)
+    
+    for aliment in aliments:
+        file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv'
+
+    # Controlla se il file esiste
+        if os.path.exists(file_path):
+        # Cancella il file
+            existing_data = pd.read_csv(output_csv_path)
+            filtered_data= df[df['generic_category'] == aliment['category']]
+            filtered_data = pd.concat([existing_data, filtered_data])
+            
+            
+        else:
+            filtered_data= df[df['generic_category'] == aliment['category']]
+        filtered_data.to_csv(output_csv_path_teporary, index=False)    
+        
+        
+    
+
 def filter_and_prepare_csv(input_csv_path, output_csv_path, min_instances=5000):
  
     df = pd.read_csv(input_csv_path)
@@ -175,6 +200,5 @@ def filter_and_prepare_csv(input_csv_path, output_csv_path, min_instances=5000):
 
     return filtered_df
 
-input_csv_path = '/Users/lucavisconti/Documents/FoodAI/csv/food-data.csv'
-output_csv_path = '/Users/lucavisconti/Documents/FoodAI/csv/prepared-food-data.csv'
+
 prepared_df = filter_and_prepare_csv(input_csv_path, output_csv_path)

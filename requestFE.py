@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from trainingML import trainerPranzo
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -26,7 +27,9 @@ class ReqeustFE(BaseModel):
 @app.post("/goals/")
 async def create_item(requestFE: ReqeustFE):
     if requestFE.pranzo:
-       print(requestFE) 
+        
+        return trainerPranzo(requestFE.pranzo,requestFE.aliments)
+        
     return "non ci sono risposte dal server"
     
 

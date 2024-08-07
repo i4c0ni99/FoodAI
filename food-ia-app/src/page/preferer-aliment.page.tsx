@@ -11,13 +11,13 @@ export const PrefererAliment = ({
     const [aliments, setAliments] = useState<{ name: string, category: string, img: string, checked: boolean }[]>([])
     const [showAlert, setShowAlert] = useState(false);
 
-    const onSubmit=()=>{
+    const onSubmit=async ()=>{
        const alimentsTrue = aliments.filter((alimentTrue) => alimentTrue.checked)
        if(alimentsTrue.length >= 4 ){
        const allData =  getCookie()
        setShowAlert(false)
        console.log(allData,alimentsTrue)
-        axiosInstance.post('/goals',
+        const axiosResult= await axiosInstance.post('/goals',
         {
             'aliments':alimentsTrue,
             'tdee': allData.tdee,
@@ -30,7 +30,9 @@ export const PrefererAliment = ({
             'spuntino_mat':allData.spuntino_mat,
             'spuntino_pom':allData.spuntino_pom
         }
+        
        ) 
+       console.log(axiosResult.data)
        }else setShowAlert(true)
     }
     useEffect(() => {
