@@ -5,17 +5,29 @@ import random
 
 total = []
 
-def matchConstraint(domain):
+def matchConstraint(i,selected_data):
     global total
-    total_protein = domain['protein'].sum()
-    total_fat = domain['fat'].sum()
-    total_carbohydrate = domain['carbohydrate'].sum()    
-    return {'domain': domain,
-            'proteins':total_protein,
-            'carbs':total_carbohydrate,
-            'fats':total_fat}
-
+    match total[i]:
+        case 'carbs':
+                filtered_df = selected_data[selected_data['carbohydrate'] >= 35]
+                total_protein = filtered_df['protein'].sum()
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()    
+                return filtered_df,total_protein,total_carbohydrate,total_fat
+        case 'proteins':
+                filtered_df = selected_data[selected_data['protein'] >= 45]
                 
+                total_protein = filtered_df['protein'].sum()
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()
+                return filtered_df,total_protein,total_carbohydrate,total_fat
+        case 'fats':
+                filtered_df = selected_data[selected_data['fat'] >= 35]
+                total_protein = filtered_df['protein'].sum()
+                
+                total_fat = filtered_df['fat'].sum()
+                total_carbohydrate = filtered_df['carbohydrate'].sum()  
+                return filtered_df,total_protein,total_carbohydrate,total_fat,
         
         
 def calculate_difference(combination, target_protein, target_fat, target_carbohydrate,i,df):
@@ -23,7 +35,7 @@ def calculate_difference(combination, target_protein, target_fat, target_carbohy
     selected_data = df.iloc[combination]
     global total
     # Calcola la somma delle proprietà selezionate
-    total_macro= matchConstraint(selected_data)
+    total_macro= matchConstraint(i,selected_data)
     total_protein=total_macro[1]
     total_fat=total_macro[3]
     total_carbohydrate = total_macro[2]
