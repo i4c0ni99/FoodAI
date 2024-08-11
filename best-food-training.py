@@ -153,18 +153,15 @@ def find_best_food(df, category, food_list,remaining_categories,categories_df):
                 food_list = df[df['category'] == category]
     # Calcola il punteggio
     if food_list is not None and len(food_list['nutritional_score']) > 0   :
-        print('!!!!!!!!!!!!!!prima di max !!!!!!!!!!!!!!!!!!')
-        print(food_list)
         best_food,food_list = get_row(max(food_list['nutritional_score']),food_list)
-        print('!!!!!!!!!!!!!!post max !!!!!!!!!!!!!!!!!!',food_list)
-        return best_food,food_list   
-    return None,None
+        return best_food,food_list,category   
+    return None,None,None
 
 
 # Funzione per richiedere feedback e gestire l'alternativa
 def request_feedback(category, initial_food, df, food_list, evaluated_food_ids,remaining_categories,categories_df):
     """Richiede feedback sull'alimento proposto e gestisce le alternative."""
-    print(f"\nCategoria: {initial_food['category']}")
+    print(f"\nCategoria: {category}")
     print(f"Alimento proposto: {initial_food['category']}")
     print(f"Descrizione: {initial_food['description']}")
     print(f"Carboidrati: {initial_food['carbohydrate']}")
@@ -177,21 +174,21 @@ def request_feedback(category, initial_food, df, food_list, evaluated_food_ids,r
     feedback = input("Questo alimento è adatto? (si/no) oppure digitare 'stop' per fermare: ").strip().lower()
 
     if feedback == 'stop':
-        return None, 'interrotto'
+        return None, 'interrotto',category
 
     if feedback == 'si':
-        return initial_food, 'approvato'
+        return initial_food, 'approvato',category
     else:
         # Trova un'altra alternativa
         if len(food_list) > 0 :
-            alternative_food,food_list = find_best_food(df, category, food_list,remaining_categories,categories_df)
+            alternative_food,food_list,category = find_best_food(df, category, food_list,remaining_categories,categories_df)
             print(alternative_food ,'questa e la proposta:')
             if alternative_food is not None:
                 print("\nProposta alternativa:")
                 return request_feedback(category, alternative_food, df, food_list, evaluated_food_ids,remaining_categories ,categories_df)
             else:
                 print("Non ci sono altre alternative disponibili.")
-        return None, 'rifiutato'
+        return None, 'rifiutato',category
 
 
 # Funzione principale
@@ -225,7 +222,15 @@ def main(input_file, output_file, categories_file):
     else:
         evaluated_food_ids = []
 
-    results = []
+    results = pd.DataFrame({},columns=[
+                        'original_category',
+                        'category',
+                        'description',
+                        'carbohydrate',
+                        'protein',
+                        'fat',
+                        'kilocalories',
+                        'feedback'])
     processed_categories = set()
     feedback = 'in esecuzione'
     while  feedback != 'interrotto':
@@ -245,13 +250,13 @@ def main(input_file, output_file, categories_file):
         condition= categories_df[categories_df['category'] == category]['stato'] == 'da verificare'
         while   condition.any() and feedback != 'interrotto' :
             
-            best_food,food_list = find_best_food(df, category,food_list ,remaining_categories,categories_df)
+            best_food,food_list ,category= find_best_food(df, category,food_list ,remaining_categories,categories_df)
             if best_food is not None:
                 # Richiedi feedback sull'alimento proposto
-                final_food, feedback = request_feedback(category, best_food, df, food_list, evaluated_food_ids,remaining_categories,categories_df)
+                final_food, feedback,category = request_feedback(category, best_food, df, food_list, evaluated_food_ids,remaining_categories,categories_df)
                 if feedback == 'approvato' and final_food is not None:
-                    results.append({
-                        'original_category': category,
+                    new_rows = pd.DataFrame({
+                       'original_category': category,
                         'category': final_food['category'],
                         'description': final_food['description'],
                         'carbohydrate': final_food['carbohydrate'],
@@ -261,19 +266,21 @@ def main(input_file, output_file, categories_file):
                         'feedback': feedback
                     })
                     #Se l'alimento è approvato, aumentiamo il contatore per la categoria , = 1
-                    
+                    results = pd.concat([results, new_rows], ignore_index=True)
                     categories_df.loc[categories_df['category'] == category,'accettati'] = 1
-                    print('ACCETTATI',categories_df[categories_df['category'] == category]['accettati'])
                     evaluated_food_ids.append(final_food['id'])
 
                     # Se abbiamo trovato 5 alimenti approvati per questa categoria, la consideriamo completata
-                    if len([res for res in results if
-                            res['original_category'] == category and res['feedback'] == 'approvato']) == 5:
+                    cond=results[(results['category'] == category) & (results['feedback']== 'approvato')]
+                    print('consition!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=')
+                    print(len(cond))
+                    if len(cond) == 5:
                         categories_df.loc[categories_df['category'] == category, 'stato'] = 'completata'
                         processed_categories.add(category)
+                        break
                         
                 else:
-                    results.append({
+                    new_rows = pd.DataFrame({
                         'original_category': category,
                         'category': best_food['category'],
                         'description': best_food['description'],
@@ -283,6 +290,7 @@ def main(input_file, output_file, categories_file):
                         'kilocalories': best_food['kilocalories'],
                         'feedback': feedback
                     })
+                    results = pd.concat([results, new_rows], ignore_index=True)
                     evaluated_food_ids.append(best_food['id'])
                     categories_df.loc[categories_df['category'] == category,'rifiutati'] = 1
                     print('RIFIUTATI',categories_df[categories_df['category'] == category]['rifiutati'])
@@ -292,7 +300,8 @@ def main(input_file, output_file, categories_file):
             processed_categories.add(category)
     
     # Crea un DataFrame con i risultati
-    results_df = pd.DataFrame(results)
+    
+    results_df=results
 
     # Aggiungi i risultati già valutati, se presenti
     if os.path.exists(output_file) and os.path.getsize(output_file) > 0:
