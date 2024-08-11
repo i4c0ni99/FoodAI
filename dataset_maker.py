@@ -133,7 +133,7 @@ def filter_csv_by_category(aliments):
 def filter_and_prepare_csv(input_csv_path, output_csv_path, min_instances=5000):
  
     df = pd.read_csv(input_csv_path)
-  
+    
     df.columns = [col.lower() for col in df.columns]
 
     # Elenco delle colonne richieste
@@ -188,7 +188,7 @@ def filter_and_prepare_csv(input_csv_path, output_csv_path, min_instances=5000):
 
     # Pulizia dei dati
     filtered_df = filtered_df.dropna()
-    filtered_df = filtered_df.drop_duplicates()
+    filtered_df.drop_duplicates(subset=['fat', 'protein', 'carbohydrate', 'category'], inplace=True)
 
     filtered_df['original_category'] = filtered_df['category']
 
