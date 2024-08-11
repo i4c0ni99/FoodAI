@@ -147,9 +147,7 @@ def find_best_food(df, category, food_list,remaining_categories,categories_df):
     print(category_df) """
     
     if food_list is  None  :
-                print( categories_df.loc[categories_df['category'] == category, 'stato'])
                 categories_df.loc[categories_df['category'] == category, 'stato'] = 'completata'
-                print( categories_df.loc[categories_df['category'] == category, 'stato'])
                 category = np.random.choice(list(remaining_categories))
             # Trova il miglior alimento per questa categoria
                 food_list = df[df['category'] == category]
@@ -229,8 +227,8 @@ def main(input_file, output_file, categories_file):
 
     results = []
     processed_categories = set()
-
-    while True:
+    feedback = 'in esecuzione'
+    while  feedback != 'interrotto':
         # Seleziona una categoria specifica random tra quelle non ancora processate
         remaining_categories = set(
             categories_df[categories_df['stato'] == 'da verificare']['category']) - processed_categories
@@ -245,7 +243,7 @@ def main(input_file, output_file, categories_file):
         food_list = df[df['category'] == category]
         #generic_categories.get(category,[])
         condition= categories_df[categories_df['category'] == category]['stato'] == 'da verificare'
-        while   condition.any() :
+        while   condition.any() and feedback != 'interrotto' :
             
             best_food,food_list = find_best_food(df, category,food_list ,remaining_categories,categories_df)
             if best_food is not None:
@@ -262,6 +260,10 @@ def main(input_file, output_file, categories_file):
                         'kilocalories': final_food['kilocalories'],
                         'feedback': feedback
                     })
+                    #Se l'alimento è approvato, aumentiamo il contatore per la categoria , = 1
+                    
+                    categories_df.loc[categories_df['category'] == category,'accettati'] = 1
+                    print('ACCETTATI',categories_df[categories_df['category'] == category]['accettati'])
                     evaluated_food_ids.append(final_food['id'])
 
                     # Se abbiamo trovato 5 alimenti approvati per questa categoria, la consideriamo completata
@@ -282,7 +284,8 @@ def main(input_file, output_file, categories_file):
                         'feedback': feedback
                     })
                     evaluated_food_ids.append(best_food['id'])
-            
+                    categories_df.loc[categories_df['category'] == category,'rifiutati'] = 1
+                    print('RIFIUTATI',categories_df[categories_df['category'] == category]['rifiutati'])
         else:
             print(f"Nessun alimento nutriente trovato per '{category}'. Ignorando questa categoria.")
             categories_df.loc[categories_df['category'] == category, 'stato'] = 'ignora'
