@@ -167,6 +167,7 @@ def request_feedback(category, initial_food, df, food_list, evaluated_food_ids,r
     print(f"Carboidrati: {initial_food['carbohydrate']}")
     print(f"Proteine: {initial_food['protein']}")
     print(f"Grassi: {initial_food['fat']}")
+    print(f"Categoria generica: {initial_food['generic_category']}")
     print(f"Kilocalorie: {initial_food['kilocalories']}")
 
     
@@ -232,7 +233,8 @@ def main(input_file, output_file, categories_file):
                         'protein',
                         'fat',
                         'kilocalories',
-                        'feedback'])
+                        'feedback',
+                        'generic_category'])
     processed_categories = set()
     feedback = 'in esecuzione'
     while  feedback != 'interrotto':
@@ -265,7 +267,8 @@ def main(input_file, output_file, categories_file):
                         'protein': final_food['protein'],
                         'fat': final_food['fat'],
                         'kilocalories': final_food['kilocalories'],
-                        'feedback': feedback
+                        'feedback': feedback,
+                        'generic_category' : final_food['generic_category']
                     })
                     #Se l'alimento è approvato, aumentiamo il contatore per la categoria , = 1
                     results = pd.concat([results, new_rows], ignore_index=True)
@@ -288,7 +291,8 @@ def main(input_file, output_file, categories_file):
                         'protein': final_food['protein'],
                         'fat': final_food['fat'],
                         'kilocalories': final_food['kilocalories'],
-                        'feedback': feedback
+                        'feedback': feedback,
+                        'generic_category' : final_food['generic_category']
                     })
                     # Aggiungi le nuove righe usando concat
                     results = pd.concat([results, new_rows], ignore_index=True)

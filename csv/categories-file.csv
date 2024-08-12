@@ -3,17 +3,17 @@ BUTTER,0,0,da verificare
 CHEESE,0,0,da verificare
 CREAM,0,0,da verificare
 SOUR CREAM,0,0,da verificare
-MILK,0,0,da verificare
+MILK,1,0,completata
 WHEY,0,0,da verificare
 YOGURT,0,0,da verificare
-CHEESE FD,0,0,da verificare
+CHEESE FD,1,0,da verificare
 CHEESE SPRD,0,0,da verificare
 CREAM SUBSTITUTE,0,0,da verificare
 DESSERT TOPPING,0,0,da verificare
 SOUR CRM,0,0,da verificare
 MILK SHAKES,0,0,da verificare
 CHEESE SUB,0,0,da verificare
-CHEESE SAU,0,0,da verificare
+CHEESE SAU,1,0,da verificare
 PARMESAN CHS TOPPING,0,0,da verificare
 CREAM SUB,0,0,da verificare
 EGG,0,0,da verificare
@@ -24,7 +24,7 @@ COUSCOUS,0,0,da verificare
 NOODLES,0,0,da verificare
 MACARONI,0,0,da verificare
 PASTA,0,0,da verificare
-RICE,0,0,da verificare
+RICE,1,0,completata
 SEMOLINA,0,0,da verificare
 SPAGHETTI,0,0,da verificare
 TORTELLINI,0,0,da verificare
@@ -32,7 +32,7 @@ CHERVIL,0,0,da verificare
 CINNAMON,0,0,da verificare
 CLOVES,0,0,da verificare
 CORIANDER LEAF,0,0,da verificare
-DILL WEED,0,0,da verificare
+DILL WEED,0,1,da verificare
 GINGER,0,0,da verificare
 MACE,0,0,da verificare
 MARJORAM,0,0,da verificare
@@ -46,8 +46,8 @@ SAVORY,0,0,da verificare
 TURMERIC,0,0,da verificare
 BASIL,0,0,da verificare
 MUSTARD,0,0,da verificare
-THYME,0,0,da verificare
-VANILLA EXTRACT,1,1,da verificare
+THYME,0,0,ignora
+VANILLA EXTRACT,0,0,da verificare
 CAPERS,0,0,da verificare
 HORSERADISH,0,0,da verificare
 PEPPERMINT,0,0,da verificare
@@ -64,8 +64,8 @@ GRAVY,0,0,da verificare
 SPLIT PEA SOUP,0,0,da verificare
 SPLIT PEA W/ HAM SOUP,0,0,da verificare
 CAMPBELL'S RED&WHITE,0,0,da verificare
-CAMPBEL COMPANY,0,0,da verificare
-CAMPBELL'S CHUNKY MICROWAVABLE BWLS,0,0,da verificare
+CAMPBEL COMPANY,1,0,da verificare
+CAMPBELL'S CHUNKY MICROWAVABLE BWLS,1,0,da verificare
 CAMPBELL SOUP COMP,0,0,da verificare
 COMPANY,0,0,da verificare
 SOUP COMPANY,0,0,da verificare
@@ -77,17 +77,17 @@ CAMPBELL'S SEL GOLD LABEL SOUPS,0,0,da verificare
 CAMPBELL'S SEL MCRWVABLE BOWLS,0,0,da verificare
 CAMPBELL'S SEL MCRWVABLE BWLS,0,0,da verificare
 CAMPBELL'S SEL MICROWAVEABLE BOWLS,0,0,da verificare
-CAMPBELL'S SEL SOUP,0,0,da verificare
+CAMPBELL'S SEL SOUP,1,0,completata
 CAMPBELL'S SOUP AT HAND,0,0,da verificare
 POTATO SOUP,0,0,da verificare
 FAT,0,0,da verificare
-SALAD DRSNG,0,0,da verificare
+SALAD DRSNG,1,1,completata
 SHORTENING,0,0,da verificare
 SHORTENING BREAD,0,0,da verificare
 SHORTENING FRYING (REG),0,0,da verificare
 SHORTENING CAKE MIX,0,0,da verificare
 SHORTENING FRYING (HVY DUTY),0,0,da verificare
-SHORTENING CONFECTIONERY,1,0,da verificare
+SHORTENING CONFECTIONERY,0,0,da verificare
 SHORTENING FRYING HVY DUTY,0,0,da verificare
 SHORTENING INDUSTRIAL,0,0,da verificare
 MEAT DRIPPINGS (LARD,0,0,da verificare
@@ -106,19 +106,19 @@ TURKEY PATTIES,0,0,da verificare
 TURKEY BREAST,0,0,da verificare
 TURKEY THIGH,0,0,da verificare
 TURKEY RST,0,0,da verificare
-TURKEY STKS,1,0,da verificare
+TURKEY STKS,0,0,da verificare
 POULTRY,0,0,da verificare
 POULTRY FD PRODUCTS,0,0,da verificare
 CHICKEN NUGGETS,0,0,da verificare
 CHICKEN PATTY,0,0,da verificare
-CHICKEN BREAST TENDERS,0,0,ignora
+CHICKEN BREAST TENDERS,0,0,da verificare
 USDA CMDTY CHICK,0,0,da verificare
 USDA CMDTY,0,0,da verificare
-OSTRICH,0,0,da verificare
-BARBECUE LOAF,0,0,da verificare
+OSTRICH,1,0,completata
+BARBECUE LOAF,1,0,da verificare
 BEEF,0,0,da verificare
 BF,0,0,da verificare
-BEERWURST,0,0,da verificare
+BEERWURST,0,1,da verificare
 BUFFALO,0,0,da verificare
 BOLOGNA,0,0,da verificare
 BRATWURST,0,0,da verificare
@@ -130,7 +130,7 @@ CORNED BEEF LOAF,0,0,da verificare
 DUTCH BRAND LOAF,0,0,da verificare
 FRANKFURTER,0,0,da verificare
 HAM,0,0,da verificare
-HEADCHEESE,0,1,da verificare
+HEADCHEESE,0,0,da verificare
 SAUSAGE,0,0,da verificare
 KIELBASA,0,0,da verificare
 LAMB,0,0,da verificare
@@ -139,7 +139,7 @@ LIVER SAUSAGE,0,0,da verificare
 LUNCHEON MEAT,0,0,da verificare
 MORTADELLA,0,0,da verificare
 OLIVE LOAF,0,0,da verificare
-PASTRAMI,0,0,da verificare
+PASTRAMI,1,0,da verificare
 PATE,0,0,da verificare
 PEPPERONI,0,0,da verificare
 PICKLE&PIMIENTO LOAF,0,0,da verificare
@@ -149,7 +149,7 @@ MOTHER'S LOAF,0,0,da verificare
 PICNIC LOAF,0,0,da verificare
 PORK,0,0,da verificare
 PORK SAUSAGE,0,0,da verificare
-PORK&BF SAUSAGE,0,0,da verificare
+PORK&BF SAUSAGE,1,0,da verificare
 TURKEY SAUSAGE,0,0,da verificare
 SALAMI,0,0,da verificare
 SANDWICH SPREAD,0,0,da verificare
@@ -159,10 +159,10 @@ TURKEY HAM,0,0,da verificare
 TURKEY ROLL,0,0,da verificare
 HONEY ROLL SAUSAGE,0,0,da verificare
 LUNCHEON SAUSAGE,1,0,da verificare
-NEW ENGLAND BRAND SAUSAGE,0,0,da verificare
-OSCAR MAYER,0,0,da verificare
+NEW ENGLAND BRAND SAUSAGE,0,1,da verificare
+OSCAR MAYER,1,1,completata
 LOUIS RICH,0,0,da verificare
-BUTCHER BOY MEATS,0,1,da verificare
+BUTCHER BOY MEATS,0,0,da verificare
 CARL BUDDIG,0,0,da verificare
 CARL BUDDIG. CKD SMOKED BF PASTRAMI,0,0,da verificare
 HORMEL SPAM,0,0,da verificare
@@ -171,15 +171,15 @@ SCRAPPLE,0,0,da verificare
 BEEF SAUSAGE,0,0,da verificare
 PORK & TURKEY SAUSAGE,0,0,da verificare
 VEAL,0,0,da verificare
-CEREALS RTE,0,0,da verificare
+CEREALS RTE,1,0,completata
 CEREALS,0,0,da verificare
-CEREALS READY TO EAT,0,0,da verificare
+CEREALS READY TO EAT,0,1,da verificare
 CERLS,0,0,da verificare
-CEREAL WAFER STRAWS,1,1,da verificare
-CRAB,1,0,completata
+CEREAL WAFER STRAWS,0,0,da verificare
+CRAB,0,0,da verificare
 CATFISH,0,0,da verificare
 FISH,0,0,da verificare
-Fish,1,0,da verificare
+Fish,0,0,da verificare
 SALMON,0,0,da verificare
 STEELHEAD TROUT,0,0,da verificare
 ACEROLA,0,0,da verificare
@@ -193,17 +193,17 @@ AVOCADOS,0,0,da verificare
 BANANAS,0,0,da verificare
 BLACKBERRIES,0,0,da verificare
 BLACKBERRY JUC,0,0,da verificare
-BLUEBERRIES,0,0,da verificare
-BOYSENBERRIES,1,0,da verificare
+BLUEBERRIES,1,0,completata
+BOYSENBERRIES,0,0,da verificare
 BREADFRUIT,0,0,da verificare
-CARAMBOLA,0,0,da verificare
+CARAMBOLA,1,0,da verificare
 CARISSA,0,0,da verificare
 CHERIMOYA,0,0,da verificare
 CHERRIES,0,0,da verificare
 CRABAPPLES,0,0,da verificare
 CRANBERRIES,0,0,da verificare
 CRANBERRY SAU,0,0,da verificare
-CRANBERRY-ORANGE RELISH,0,0,da verificare
+CRANBERRY-ORANGE RELISH,1,0,da verificare
 CURRANTS,0,0,da verificare
 CUSTARD-APPLE,0,0,da verificare
 DATES,0,0,da verificare
@@ -211,25 +211,25 @@ ELDERBERRIES,0,0,da verificare
 FIGS,0,0,da verificare
 FRUIT SALAD,0,0,da verificare
 GOOSEBERRIES,0,0,da verificare
-GRAPEFRUIT,0,0,da verificare
-GRAPEFRUIT JUC,1,0,completata
+GRAPEFRUIT,1,0,completata
+GRAPEFRUIT JUC,0,0,da verificare
 GRAPE JUC,0,0,da verificare
 GRAPES,0,0,da verificare
 GROUNDCHERRIES,0,0,da verificare
 GUAVAS,0,0,da verificare
 GUAVA SAUCE,0,0,da verificare
-JACKFRUIT,1,0,da verificare
-JAVA-PLUM,0,0,da verificare
+JACKFRUIT,0,0,da verificare
+JAVA-PLUM,1,0,da verificare
 JUJUBE,0,0,da verificare
 KIWI FRUIT,0,0,da verificare
-KUMQUATS,0,0,da verificare
+KUMQUATS,0,1,da verificare
 LEMONS,0,0,da verificare
 LEMON JUICE,0,0,da verificare
 LEMON JUC,0,0,da verificare
 LEMON PEEL,0,0,da verificare
 LIMES,0,0,da verificare
 LIME JUICE,0,0,da verificare
-LIME JUC,0,0,da verificare
+LIME JUC,1,0,da verificare
 LITCHIS,0,0,da verificare
 LOGANBERRIES,0,0,da verificare
 LONGANS,0,0,da verificare
@@ -241,38 +241,38 @@ MELON,0,0,da verificare
 MELONS,0,0,da verificare
 MELON BALLS,0,0,da verificare
 FRUIT,0,0,da verificare
-MULBERRIES,1,0,da verificare
+MULBERRIES,0,0,da verificare
 NECTARINES,0,0,da verificare
 OHELOBERRIES,0,0,da verificare
 OLIVES,0,0,da verificare
 ORANGES,0,0,da verificare
-ORANGE JUICE,0,1,da verificare
+ORANGE JUICE,0,0,da verificare
 ORANGE JUC,0,0,da verificare
 ORANGE PEEL,0,0,da verificare
 ORANGE-GRAPEFRUIT JUC,0,0,da verificare
 TANGERINES,0,0,da verificare
-TANGERINE JUICE,0,1,da verificare
-TANGERINE JUC,1,1,da verificare
-PAPAYAS,0,1,da verificare
+TANGERINE JUICE,0,0,da verificare
+TANGERINE JUC,0,0,da verificare
+PAPAYAS,0,0,da verificare
 PAPAYA NECTAR,0,0,da verificare
 PASSION-FRUIT,0,0,da verificare
 PASSION-FRUIT JUC,0,0,da verificare
 PEACHES,0,0,da verificare
 PEACH NECTAR,0,0,da verificare
-PEARS,0,0,da verificare
+PEARS,1,0,completata
 PEAR NECTAR,0,0,da verificare
 PERSIMMONS,0,0,da verificare
 PINEAPPLE,0,0,da verificare
 PINEAPPLE JUC,0,0,da verificare
 PITANGA,0,0,da verificare
 PLANTAINS,0,0,da verificare
-PLUMS,0,0,da verificare
+PLUMS,1,0,completata
 POMEGRANATES,0,0,da verificare
 PRICKLY PEARS,0,0,da verificare
 PRUNES,0,0,da verificare
-PRUNE JUICE,0,1,da verificare
+PRUNE JUICE,0,0,da verificare
 PUMMELO,0,0,da verificare
-QUINCES,0,0,da verificare
+QUINCES,0,1,da verificare
 RAISINS,0,0,da verificare
 RAMBUTAN,0,0,da verificare
 RASPBERRIES,0,0,da verificare
@@ -359,11 +359,11 @@ MUSHROOMS,0,0,da verificare
 ONIONS,0,0,da verificare
 PARSNIPS,0,0,da verificare
 PEPPERS,0,0,da verificare
-POTATOES,0,0,da verificare
-PUMPKIN,0,0,da verificare
+POTATOES,1,0,completata
+PUMPKIN,1,1,da verificare
 RADISHES,0,0,da verificare
 RUTABAGAS,0,0,da verificare
-SHALLOTS,0,0,da verificare
+SHALLOTS,0,1,da verificare
 SPINACH,0,0,da verificare
 SQUASH,0,0,da verificare
 SWEET CORN,0,0,da verificare
@@ -379,7 +379,7 @@ SOFT DRINK,0,0,da verificare
 BEVERAGE,0,0,da verificare
 COFFEE,0,0,da verificare
 JUICE,0,0,da verificare
-WATER,1,0,da verificare
+WATER,0,0,da verificare
 ALCOHOL,0,0,da verificare
 ALCOHOLIC BEVERAGE,0,0,da verificare
 COCOA,0,0,da verificare
@@ -387,7 +387,7 @@ TEA,0,0,da verificare
 CANDIES,0,0,da verificare
 CANDY,0,0,da verificare
 CHOCOLATE,0,0,da verificare
-DANISH PASTRY,0,0,da verificare
+DANISH PASTRY,1,0,da verificare
 DESSERTS,0,0,da verificare
 GELATIN DSSRT,0,0,da verificare
 GUM,0,0,da verificare
@@ -405,13 +405,13 @@ PIE,0,0,da verificare
 PUDDING,0,0,da verificare
 PUDDINGS,0,0,da verificare
 TREAT,0,0,da verificare
-WAFFLES,0,0,da verificare
+WAFFLES,1,1,da verificare
 CAKE,0,0,da verificare
 COOKIES,0,0,da verificare
 BAKERY PRODUCT,0,0,da verificare
-BREAD,0,0,da verificare
+BREAD,1,0,completata
 PASTRY,0,0,da verificare
-CRACKERS,0,0,da verificare
+CRACKERS,1,0,completata
 PIE CRUST,0,0,da verificare
 ROLLS,0,0,da verificare
 SNACK BAR,0,0,da verificare
@@ -449,7 +449,7 @@ CUSTARD,0,0,da verificare
 PICKLES,0,0,da verificare
 FRUIT,0,0,da verificare
 GELATIN,0,0,da verificare
-WATER,1,0,da verificare
+WATER,0,0,da verificare
 BURGER KING,0,0,da verificare
 Burger king,0,0,da verificare
 DOMINO'S,0,0,da verificare
@@ -462,7 +462,7 @@ LITTLE CAESARS,0,0,da verificare
 MCDONALD'S,0,0,da verificare
 McDONALD'S,0,0,da verificare
 PAPA,0,0,da verificare
-PIZZA,0,0,da verificare
+PIZZA,1,0,completata
 PIZZA HUT,0,0,da verificare
 POPEYES,0,0,da verificare
 TACO BELL,0,0,da verificare

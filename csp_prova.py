@@ -40,7 +40,7 @@ def getCsp(protein_g,carb_g,fat_g):
 
    
 
-    df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv')
+    df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-file.csv')
     csp = {
     'variables': ['carbs','proteins','fats'],
     'domains': {
@@ -49,9 +49,9 @@ def getCsp(protein_g,carb_g,fat_g):
         'fats': df[df['fat'] >= 35]
     },
     'constraints': [
-        lambda  val: constraint_carb(  target_carbs),
-        lambda  val: constraint_protein(  target_proteins),
-        lambda  val: constraint_fat(  target_fats),
+        lambda  val: constraint_carb(target_carbs),
+        lambda  val: constraint_protein(target_proteins),
+        lambda  val: constraint_fat(target_fats),
     ]}
 
     return backtracking_search(csp)
