@@ -179,16 +179,18 @@ def request_feedback(category, initial_food, df, food_list, evaluated_food_ids,r
     if feedback == 'si':
         return initial_food, 'approvato',category
     else:
+        return initial_food, 'rifiutato',category
         # Trova un'altra alternativa
-        if len(food_list) > 0 :
+        """ if len(food_list) > 0 :
             alternative_food,food_list,category = find_best_food(df, category, food_list,remaining_categories,categories_df)
-            print(alternative_food ,'questa e la proposta:')
-            if alternative_food is not None:
-                print("\nProposta alternativa:")
-                return request_feedback(category, alternative_food, df, food_list, evaluated_food_ids,remaining_categories ,categories_df)
-            else:
-                print("Non ci sono altre alternative disponibili.")
-        return None, 'rifiutato',category
+        print(alternative_food ,'questa e la proposta:')
+        if alternative_food is not None:
+            print("\nProposta alternativa:")
+            return request_feedback(category, alternative_food, df, food_list, evaluated_food_ids,remaining_categories ,categories_df)
+        else:
+            print("Non ci sono altre alternative disponibili.") """
+                
+        
 
 
 # Funzione principale
@@ -272,28 +274,28 @@ def main(input_file, output_file, categories_file):
 
                     # Se abbiamo trovato 5 alimenti approvati per questa categoria, la consideriamo completata
                     cond=results[(results['category'] == category) & (results['feedback']== 'approvato')]
-                    print('consition!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=')
-                    print(len(cond))
                     if len(cond) == 5:
                         categories_df.loc[categories_df['category'] == category, 'stato'] = 'completata'
                         processed_categories.add(category)
                         break
                         
-                else:
+                if feedback == 'rifiutato' and final_food is not None:
                     new_rows = pd.DataFrame({
                         'original_category': category,
-                        'category': best_food['category'],
-                        'description': best_food['description'],
-                        'carbohydrate': best_food['carbohydrate'],
-                        'protein': best_food['protein'],
-                        'fat': best_food['fat'],
-                        'kilocalories': best_food['kilocalories'],
+                        'category': final_food['category'],
+                        'description': final_food['description'],
+                        'carbohydrate': final_food['carbohydrate'],
+                        'protein': final_food['protein'],
+                        'fat': final_food['fat'],
+                        'kilocalories': final_food['kilocalories'],
                         'feedback': feedback
                     })
+                    # Aggiungi le nuove righe usando concat
                     results = pd.concat([results, new_rows], ignore_index=True)
-                    evaluated_food_ids.append(best_food['id'])
+                    evaluated_food_ids.append(final_food['id'])
                     categories_df.loc[categories_df['category'] == category,'rifiutati'] = 1
-                    print('RIFIUTATI',categories_df[categories_df['category'] == category]['rifiutati'])
+                    print(results)
+                    
         else:
             print(f"Nessun alimento nutriente trovato per '{category}'. Ignorando questa categoria.")
             categories_df.loc[categories_df['category'] == category, 'stato'] = 'ignora'
