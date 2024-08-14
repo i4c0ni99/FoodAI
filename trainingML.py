@@ -3,6 +3,7 @@ from dataset_maker import filter_csv_by_category
 from csp_prova import getCsp
 import os 
 def trainerPranzo(tdee_pranzo,aliments):
+    
     protein_kal = tdee_pranzo * 0.3
     carb_kal=tdee_pranzo * 0.5
     fat_kal=tdee_pranzo *0.2 
@@ -10,11 +11,17 @@ def trainerPranzo(tdee_pranzo,aliments):
     protein_g = protein_kal / 4
     carb_g = carb_kal / 4
     fat_g= fat_kal / 9
-    filter_csv_by_category(aliments)
     result=  getCsp(protein_g,carb_g,fat_g)
-    print('soluzione trovata',result )
+    print(result)
+    """  print('carbs',carb_g)
+    #filter_csv_by_category(aliments)
+    
+    print('soluzione trovata')
+    print(result[1])
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print('Grammi totali',result[0]) """
     # Specifica il percorso del file da cancellare
-    file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv'
+    """ file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv'
 
     # Controlla se il file esiste
     if os.path.exists(file_path):
@@ -24,4 +31,4 @@ def trainerPranzo(tdee_pranzo,aliments):
     else:
         print(f"Il file '{file_path}' non esiste.")
     return result
-    
+     """
