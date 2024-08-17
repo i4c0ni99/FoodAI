@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { ChoichePrefAliment } from "../component/preferer-aliment.component"
 import { getAlimentMock } from "../mock/getAliment.mock"
 import { axiosInstance } from "../utils/axoisInstance.utils"
-import { getCookie } from "../utils/cookies.service"
+import { getCookie, setDietCookie } from "../utils/cookies.service"
 
 
 
@@ -14,7 +14,7 @@ export const PrefererAliment = ({
     const onSubmit=async ()=>{
        const alimentsTrue = aliments.filter((alimentTrue) => alimentTrue.checked)
        if(alimentsTrue.length >= 4 ){
-       const allData =  getCookie()
+       const allData =  getCookie('calMacro')
        setShowAlert(false)
        console.log(allData,alimentsTrue)
         const axiosResult= await axiosInstance.post('/goals',
@@ -31,8 +31,10 @@ export const PrefererAliment = ({
             'spuntino_pom':allData.spuntino_pom
         }
         
-       ) 
-       console.log(axiosResult.data)
+       )
+       
+       setDietCookie(axiosResult.data)
+       console.log(getCookie('daily_diet'))
        }else setShowAlert(true)
     }
     useEffect(() => {

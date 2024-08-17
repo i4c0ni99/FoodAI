@@ -1,7 +1,8 @@
 from logica_training import find_best_combination
 from dataset_maker import filter_csv_by_category
 from csp_prova import getCsp
-import os 
+import os
+import json 
 def trainerPranzo(tdee_pranzo,aliments):
     
     protein_kal = tdee_pranzo * 0.3
@@ -11,8 +12,10 @@ def trainerPranzo(tdee_pranzo,aliments):
     protein_g = protein_kal / 4
     carb_g = carb_kal / 4
     fat_g= fat_kal / 9
-    result=  getCsp(protein_g,carb_g,fat_g)
+    result =  getCsp(protein_g,carb_g,fat_g)
     print(result)
+ 
+    return result
     """  print('carbs',carb_g)
     #filter_csv_by_category(aliments)
     

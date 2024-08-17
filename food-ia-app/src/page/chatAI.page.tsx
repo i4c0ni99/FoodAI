@@ -1,33 +1,37 @@
 
+import { Daily_diet } from "../component/daily_diet.component"
+import { getCookie } from "../utils/cookies.service"
 
 
 
-export const ChatIA = ({ }) => {
+export interface IODiet {
+    meal: { pranzo:
+         { carbs:
+             { aliment: 
+                [{ original_category: string, category: string, description: string, 
+                    carbohydrate: number, protein: number, fat: number, kilocalories: number, feedback: string, generic_category: string }]
+                    , grams: number } 
+                } }
+}
+
+export function ChatIA() {
+    const allData : IODiet[] = getCookie('daily_diet')
+    console.log(allData)
 
     return (
         <>
-            <div className="card card-compact bg-base-300 size-full shadow-xl">
-                <div className="card size-full pb-8">
-                    <div className="chat chat-start pt-8 pl-2">
-                        <div className="chat-bubble chat-bubble-accent">
-                            That's never been done in the history of the Jedi. It's insulting!
-                        </div>
-                    </div>
-                    <div className="chat chat-end pt-8 pr-2">
-                        <div className="chat-bubble chat-bubble-accent">
-                            That's never been done in the history of the Jedi. It's insulting!
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card bg-base-100 w-3/4 mx-auto  mb-4">
-                    <div className="size-full px-8 py-8 flex">
-                        <textarea className="textarea textarea-accent h-3 basis-3/4 " placeholder="Chatta con FoodAI"></textarea>
-                        <button className="btn btn-accent basis-1/4 ml-4">send</button>
-                    </div>
-                </div>
+            <div className=" grid justify-items-center w-screen">
+                <h1 className="text-5xl font-bold mt-8 ">Daily diet!</h1>
             </div>
+            <main className="pt-24 pl-2 pr-2 sm:size-11/12 lg:size-4/5 mx-auto">
 
+                <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8">
+                    <h1 className="text-2xl font-bold my-4  ">Launch!</h1>
+                   
+
+
+                </div>
+            </main>
 
         </>
     )

@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie'
+import { Daily_diet } from '../component/daily_diet.component';
 
-export const getCookie = () => {
-    const result = Cookies.get('calMacro')
+export const getCookie = (str: string) => {
+    const result = Cookies.get(str)
 
     if(result){
         console.log(result)
@@ -15,5 +16,8 @@ export const setUserCookie = (calMacro:{}) => {
     window.location.reload()
 }
 
+export const setDietCookie = ( daily_diet:{}) => {
+   Cookies.set('daily_diet',JSON.stringify(daily_diet))
+}
 
 
