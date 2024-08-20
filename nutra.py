@@ -11,10 +11,11 @@ df = pd.read_csv(input_file)
 # Seleziona le colonne che rappresentano le caratteristiche nutrizionali
 
 # Filtro per escludere alimenti con un contenuto di carboidrati o proteine superiore a 85
-df_filtered = df[( df['carbohydrate'] < 80)]
-
+df_filtered = df[df['generic_category'] != 'fast food']
+df_filtered = df_filtered[df_filtered['carbohydrate'] < 80]
 df_filtered = df_filtered[df_filtered['protein']< 80]
 df_filtered = df_filtered[df_filtered['fat']< 80]
+
 
 
 #Definisci X (caratteristiche) e y (target sintetico basato sulle caratteristiche selezionate)
@@ -22,7 +23,7 @@ X = df_filtered[['carbohydrate','fat','protein','kilocalories']]
 
 # Per scopi dimostrativi, il target è una somma ponderata di alcune caratteristiche.
 # Qui consideriamo proteine e carboidrati come nutrienti positivi, mentre grassi e calorie come nutrienti negativi.
-y = abs(df_filtered['carbohydrate'] + df_filtered['protein'] - (df_filtered['fat'] + df_filtered['kilocalories'] * 0.01))
+y = df_filtered['carbohydrate']  + df_filtered['protein'] + (df_filtered['fat'] * 2)
 
 # Step 3: Normalizzazione dei dati
 # È una buona pratica normalizzare le caratteristiche prima di applicare la regressione lineare
@@ -41,15 +42,15 @@ model.fit(X_train, y_train)
 df_filtered['nutritional_score'] = model.predict(X_scaled)
 
 # Aggiungi la colonna del punteggio al dataset originale
-df = df.merge(df_filtered[['nutritional_score']], left_index=True, right_index=True, how='left')
+#df = df.merge(df_filtered[['nutritional_score']], left_index=True, right_index=True, how='left')
 
 # Step 7: Salvataggio del dataset con il nuovo punteggio
 output_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/new_data.csv'
-df.to_csv(output_file, index=False) 
+df_filtered.to_csv(output_file, index=False) 
 print(df_filtered)
 df = pd.read_csv(output_file)
 
-high_carb_protein_foods = df[(df['carbohydrate'] >= 80) | (df['protein'] >= 80) | (df['fat'] >= 80)]
+high_carb_protein_foods = df[(df['nutritional_score'] >= 40)]
 
 print(high_carb_protein_foods[['description', 'carbohydrate', 'protein']])
 

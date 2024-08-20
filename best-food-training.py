@@ -234,7 +234,12 @@ def main(input_file, output_file, categories_file):
                         'fat',
                         'kilocalories',
                         'feedback',
-                        'generic_category'])
+                        'generic_category',
+                        'carb_percentage',
+                        'fat_percentage',
+                        'protein_percentage',
+                        'nutritional_score' 
+                        ])
     processed_categories = set()
     feedback = 'in esecuzione'
     while  feedback != 'interrotto':
@@ -268,7 +273,11 @@ def main(input_file, output_file, categories_file):
                         'fat': final_food['fat'],
                         'kilocalories': final_food['kilocalories'],
                         'feedback': feedback,
-                        'generic_category' : final_food['generic_category']
+                        'generic_category' : final_food['generic_category'],
+                        'carb_percentage': final_food['carb_percentage'],
+                        'fat_percentage':final_food['fat_percentage'],
+                        'protein_percentage':final_food['protein_percentage'],
+                        'nutritional_score' : final_food['nutritional_score']
                     })
                     #Se l'alimento è approvato, aumentiamo il contatore per la categoria , = 1
                     results = pd.concat([results, new_rows], ignore_index=True)
@@ -292,7 +301,11 @@ def main(input_file, output_file, categories_file):
                         'fat': final_food['fat'],
                         'kilocalories': final_food['kilocalories'],
                         'feedback': feedback,
-                        'generic_category' : final_food['generic_category']
+                        'generic_category' : final_food['generic_category'],
+                        'carb_percentage': final_food['carb_percentage'],
+                        'fat_percentage':final_food['fat_percentage'],
+                        'protein_percentage':final_food['protein_percentage'],
+                        'nutritional_score' : final_food['nutritional_score']
                     })
                     # Aggiungi le nuove righe usando concat
                     results = pd.concat([results, new_rows], ignore_index=True)

@@ -5,7 +5,6 @@ export const getCookie = (str: string) => {
     const result = Cookies.get(str)
 
     if(result){
-        console.log(result)
         return JSON.parse(result);
     }
     

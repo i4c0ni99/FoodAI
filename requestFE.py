@@ -28,7 +28,7 @@ class ReqeustFE(BaseModel):
 async def create_item(requestFE: ReqeustFE):
     if requestFE.pranzo:
         
-        return [{ 'pranzo':trainerPranzo(requestFE.pranzo,requestFE.aliments)},{'pranzo':trainerPranzo(requestFE.pranzo,requestFE.aliments)},]
+        return [{'pranzo':trainerPranzo(requestFE.pranzo,requestFE.aliments)}]
         
     return "non ci sono risposte dal server"
     

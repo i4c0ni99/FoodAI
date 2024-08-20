@@ -33,8 +33,9 @@ export const PrefererAliment = ({
         
        )
        
-       setDietCookie(axiosResult.data)
-       console.log(getCookie('daily_diet'))
+        setDietCookie(axiosResult.data)
+        console.log(getCookie('daily_diet'))
+        //window.location.href= "/chat"
        }else setShowAlert(true)
     }
     useEffect(() => {

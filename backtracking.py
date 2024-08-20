@@ -1,19 +1,22 @@
 
-def alimentGranmature(var,max_value,assignment,csp,):
-    is_consistent(var,max_value,assignment,csp)
+import pandas as pd
+
+def alimentGranmature(var,max_values,assignment,csp,):
+    is_consistent(var,max_values,assignment,csp)
       
 
-def is_consistent(var, value, assignment, csp):
-    ret_val=value
-    val = value['carbohydrate'].iloc[0]
+def is_consistent(var, values, assignment, csp):
     
-    for constraint in csp['constraints']:
+    ret_val=values
+    val = values['carbohydrate'].iloc[0]
+    
+    
         
-        g,ret_val= constraint(val,ret_val)
-        
-        if  g is not None and ret_val is not None:
-            assignment[var] = { 'aliment ': ret_val.to_dict(orient="records"),'grams': g}
-            return  g,val
+    print(var)
+    g,ret_val= csp['constraints']['carbohydrate'](val,ret_val)
+    if  g is not None and ret_val is not None:
+        assignment[var] = {  'aliment' : ret_val.to_dict(orient="records"), 'grams' : g }
+        return  g,val
     return None,None
 
 def select_unassigned_variable(assignment, csp):
@@ -27,16 +30,26 @@ def order_domain_values(var, assignment, csp):
 
 def backtrack(assignment, csp):
     if len(assignment) == len(csp['variables']):
-        
         return assignment
     
     var = select_unassigned_variable(assignment, csp)
-    value = max(order_domain_values(var,assignment,csp)['carbohydrate'])
     
-    max_value = order_domain_values(var,assignment,csp)[order_domain_values(var,assignment,csp)['carbohydrate'] == value] 
-    alimentGranmature(var,max_value,assignment,csp) 
-    return backtrack(assignment,csp)
+    # Valori massimi per macro
+    #max_nutrient_food = 
     
+    
+    # Filtra i valori presi
+    values= order_domain_values(var, assignment, csp)
+                          
+                          
+    
+    print(values)
+ 
+    #alimentGranmature(var, values, assignment, csp)
+    assignment.append(var)
+    
+    
+    return backtrack(assignment, csp)
 
    
         

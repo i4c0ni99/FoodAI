@@ -113,7 +113,7 @@ def filter_csv_by_category(aliments):
     df = pd.read_csv(output_csv_path)
     
     for aliment in aliments:
-        file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-file.csv'
+        file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data-for-category.csv'
 
     # Controlla se il file esiste
         if os.path.exists(file_path):
@@ -125,6 +125,7 @@ def filter_csv_by_category(aliments):
             
         else:
             filtered_data= df[df['generic_category'] == aliment['category']]
+        
         filtered_data.to_csv(output_csv_path_teporary, index=False)    
         
         
