@@ -16,12 +16,6 @@ export function getAlimentMock (): Promise<{name: string,category:string,img : s
                 "checked": false
             },
             {
-                "name": "zuppe e salse",
-                "category": "soupsSauces",
-                "img": "https://cdn.gvmnet.it/admingvm/media/immagininews/fegatostomacoeintestino/banane_benefici.jpeg",
-                "checked": false
-            },
-            {
                 "name": "Oli e grassi",
                 "category": "oilsFats",
                 "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4twRk5CYj0FFyVqDOy_BvAy5diBybtfU3mg&s",
@@ -56,6 +50,31 @@ export function getAlimentMock (): Promise<{name: string,category:string,img : s
                 "category": "vegetables",
                 "img": "https://campaniatradizione.it/wp-content/uploads/2021/06/ciliegie-biologiche-di-campania-tradizione-1.jpg",
                 "checked": false
+            },
+            {
+                "name": "Legumi",
+                "category": "legumes",
+                "img": "https://campaniatradizione.it/wp-content/uploads/2021/06/ciliegie-biologiche-di-campania-tradizione-1.jpg",
+                "checked": false
+            },
+            {
+                "name": "Pesce",
+                "category": "fish",
+                "img": "https://campaniatradizione.it/wp-content/uploads/2021/06/ciliegie-biologiche-di-campania-tradizione-1.jpg",
+                "checked": false
+            },
+            {
+                "name": "Primi piatti",
+                "category": "first dishes",
+                "img": "https://campaniatradizione.it/wp-content/uploads/2021/06/ciliegie-biologiche-di-campania-tradizione-1.jpg",
+                "checked": false
+            },
+            {
+                "name": "Frutta secca",
+                "category": "nutsAndSeeds",
+                "img": "https://campaniatradizione.it/wp-content/uploads/2021/06/ciliegie-biologiche-di-campania-tradizione-1.jpg",
+                "checked": false
+                
             }
         ]
         

@@ -8,25 +8,40 @@ input_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data.csv'
 df = pd.read_csv(input_file)
 
 # Step 2: Preparazione dei dati
-# Seleziona le colonne che rappresentano le caratteristiche nutrizionali
+# Filtra per escludere alimenti con un contenuto di carboidrati, proteine o grassi superiore a 80
+df_filtered = df[df['carbohydrate'] < 80]
+df_filtered = df_filtered[df_filtered['protein'] < 80]
+df_filtered = df_filtered[df_filtered['fat'] < 80]
 
-# Filtro per escludere alimenti con un contenuto di carboidrati o proteine superiore a 85
-df_filtered = df[df['generic_category'] != 'fast food']
-df_filtered = df_filtered[df_filtered['carbohydrate'] < 80]
-df_filtered = df_filtered[df_filtered['protein']< 80]
-df_filtered = df_filtered[df_filtered['fat']< 80]
+# Se disponibile, penalizza ulteriormente il contenuto di zucchero semplice (aggiunto)
+if 'sugar' in df_filtered.columns:
+    df_filtered['sugar_penalty'] = df_filtered['sugar'] * 2.5  # Penalità per ogni grammo di zucchero
+else:
+    df_filtered['sugar_penalty'] = 0  # Se la colonna non esiste, la penalità è zero
 
+# Se disponibile, aggiungi un bonus per la presenza di fibre
+if 'fiber' in df_filtered.columns:
+    df_filtered['fiber_bonus'] = df_filtered['fiber'] * 4  # Peso elevato per ogni grammo di fibra
+else:
+    df_filtered['fiber_bonus'] = 0  # Se la colonna non esiste, il bonus è zero
 
+# Definisci X (caratteristiche) e y (target sintetico basato sulle caratteristiche selezionate)
+X = df_filtered[['carbohydrate', 'fat', 'protein', 'kilocalories', 'sugar_penalty', 'fiber_bonus']]
 
-#Definisci X (caratteristiche) e y (target sintetico basato sulle caratteristiche selezionate)
-X = df_filtered[['carbohydrate','fat','protein','kilocalories']]
+# Calcola il punteggio nutrizionale sintetico:
+# - Proteine (+) sono considerate positive.
+# - Fibra (+) ha un grande peso positivo per migliorare il punteggio.
+# - Zuccheri (-) sono penalizzati.
+# - Calorie (-) sono penalizzate, ma con un peso moderato.
+# - Grassi (-) sono penalizzati, ma non in modo eccessivo.
+y = (df_filtered['protein'] * 3) + df_filtered['fiber_bonus'] - (df_filtered['fat'] * 1.5) - (df_filtered['kilocalories'] * 0.5) - df_filtered['sugar_penalty']
 
-# Per scopi dimostrativi, il target è una somma ponderata di alcune caratteristiche.
-# Qui consideriamo proteine e carboidrati come nutrienti positivi, mentre grassi e calorie come nutrienti negativi.
-y = df_filtered['carbohydrate']  + df_filtered['protein'] + (df_filtered['fat'] * 2)
+# Normalizza il punteggio per avere valori compresi tra 0 e 100
+y = (y - y.min()) / (y.max() - y.min()) * 100
+
+# A questo punto, X rappresenta le caratteristiche nutrizionali e y il punteggio nutrizionale sintetico normalizzato.
 
 # Step 3: Normalizzazione dei dati
-# È una buona pratica normalizzare le caratteristiche prima di applicare la regressione lineare
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
@@ -38,24 +53,19 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # Step 6: Calcolo del punteggio di nutrizionalità per tutto il dataset
-# Utilizza il modello per predire il punteggio di nutrizionalità su tutto il dataset
 df_filtered['nutritional_score'] = model.predict(X_scaled)
-
-# Aggiungi la colonna del punteggio al dataset originale
-#df = df.merge(df_filtered[['nutritional_score']], left_index=True, right_index=True, how='left')
 
 # Step 7: Salvataggio del dataset con il nuovo punteggio
 output_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/new_data.csv'
-df_filtered.to_csv(output_file, index=False) 
+df_filtered.to_csv(output_file, index=False)
 print(df_filtered)
-df = pd.read_csv(output_file)
 
-high_carb_protein_foods = df[(df['nutritional_score'] >= 40)]
+# Filtra gli alimenti con un punteggio di nutrizionalità pari o superiore a 70
+nutritional_foods = df_filtered[df_filtered['nutritional_score'] >= 50]
+print(nutritional_foods[['description', 'carbohydrate', 'protein']])
 
-print(high_carb_protein_foods[['description', 'carbohydrate', 'protein']])
-
+# Salva gli alimenti con alto punteggio in un file CSV separato
 output_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/maximo.csv'
-high_carb_protein_foods.to_csv(output_file, index=False)
+nutritional_foods.to_csv(output_file, index=False)
 
 print(f"I risultati sono stati salvati in {output_file}")
-print(f"Il dataset con il punteggio di nutrizionalità è stato salvato in {output_file}")
