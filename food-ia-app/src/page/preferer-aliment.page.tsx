@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { ChoichePrefAliment } from "../component/preferer-aliment.component"
 import { getAlimentMock } from "../mock/getAliment.mock"
 import { axiosInstance } from "../utils/axoisInstance.utils"
-import { getCookie, setDietCookie } from "../utils/cookies.service"
+import { getCookie, setDietCookie, setUserCookie } from "../utils/cookies.service"
 
 
 
@@ -14,10 +14,10 @@ export const PrefererAliment = ({
     const onSubmit=async ()=>{
        const alimentsTrue = aliments.filter((alimentTrue) => alimentTrue.checked)
        if(alimentsTrue.length >= 4 ){
-       const allData =  getCookie('calMacro')
+       const allData =  getCookie('calMacro&aliments')
        setShowAlert(false)
        console.log(allData,alimentsTrue)
-        const axiosResult= await axiosInstance.post('/goals',
+        const axiosResult= await axiosInstance.post('/colazione/',
         {
             'aliments':alimentsTrue,
             'tdee': allData.tdee,
@@ -32,10 +32,21 @@ export const PrefererAliment = ({
         }
         
        )
-       
+        setUserCookie({
+            'aliments':alimentsTrue,
+            'tdee': allData.tdee,
+            'carb_g': allData.carb_g,
+            'protein_g': allData.protein_g,
+            'fat_g': allData.fat_g,
+            'cena':allData.cena,
+            'colazione':allData.colazione,
+            'pranzo':allData.pranzo,
+            'spuntino_mat':allData.spuntino_mat,
+            'spuntino_pom':allData.spuntino_pom
+        })
+        
         setDietCookie(axiosResult.data)
-        console.log(getCookie('daily_diet'))
-        //window.location.href= "/chat"
+        window.location.href= "/chat"
        }else setShowAlert(true)
     }
     useEffect(() => {

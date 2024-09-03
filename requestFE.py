@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from trainingML import trainerColazione
+from trainingML import trainerSpuntino_mat
 from trainingML import trainerPranzo
+from trainingML import trainerSpuntino_pom
+from trainingML import trainerCena
 
 app = FastAPI()
 app.add_middleware(
@@ -24,14 +28,47 @@ class ReqeustFE(BaseModel):
     aliments:list
             
 
-@app.post("/goals/")
+@app.post("/colazione/")
+async def create_item(requestFE: ReqeustFE):
+    if requestFE.pranzo:
+        print({'meal':trainerColazione(requestFE.colazione,requestFE.aliments)})
+        return {'meal':trainerColazione(requestFE.colazione,requestFE.aliments)}
+        
+    return "non ci sono risposte dal server"    
+
+@app.post("/spuntino_mat/")
 async def create_item(requestFE: ReqeustFE):
     if requestFE.pranzo:
         
-        return [{'pranzo':trainerPranzo(requestFE.pranzo,requestFE.aliments)}]
+        return {'meal':trainerSpuntino_mat(requestFE.spuntino_mat,requestFE.aliments)}
+        
+    return "non ci sono risposte dal server"    
+
+
+@app.post("/pranzo/")
+async def create_item(requestFE: ReqeustFE):
+    if requestFE.pranzo:
+        
+        return {'meal':trainerPranzo(requestFE.pranzo,requestFE.aliments)}
         
     return "non ci sono risposte dal server"
-    
+
+@app.post("/spuntino_pom/")
+async def create_item(requestFE: ReqeustFE):
+    if requestFE.pranzo:
+        
+        return {'meal':trainerSpuntino_pom(requestFE.spuntino_pom,requestFE.aliments)}
+        
+    return "non ci sono risposte dal server"  
+
+@app.post("/cena/")
+async def create_item(requestFE: ReqeustFE):
+    if requestFE.pranzo:
+        
+        return {'meal':trainerCena(requestFE.cena,requestFE.aliments)}
+        
+    return "non ci sono risposte dal server"  
+
 
 if __name__ == '__main__':
     import uvicorn

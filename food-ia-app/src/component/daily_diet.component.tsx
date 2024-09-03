@@ -3,16 +3,16 @@ import { IODiet } from "../page/chatAI.page"
 
 
 
-export const Daily_diet: React.FC<IODiet> = ({ pranzo }) => {
-    const food = pranzo['carbohydrate']['aliment'][0]
-    console.log(food)
+export const Daily_diet: React.FC<IODiet> = ({ meal }) => {
+    
+    console.log('ciao')
+    console.log(meal)
     return (<>
-        {food &&
+        {meal &&
             (
                 <div className="stats bg-primary text-primary-content">
-                    
                     <div className="stat">
-                    <h1 className=" mb-2 ml-6">{food['description']}</h1>
+                    <h1 className=" mb-2 ml-6">{meal.carbohydrate.description}</h1>
                         <div className="stats shadow">
                             <div className="stat">
                                 <div className="stat-figure text-secondary">
@@ -75,9 +75,9 @@ export const Daily_diet: React.FC<IODiet> = ({ pranzo }) => {
 
                     <div className="stat">
                         <div className="stat-title">Total Kalories</div>
-                        <div className="stat-value">{food['kilocalories'].toFixed(2)}K</div>
+                        <div className="stat-value">{meal.carbohydrate.kilocalories.toFixed(2)}K</div>
                         <div className="stat-title">Total Grams</div>
-                        <div className="stat-value">{pranzo['carbohydrate']['grams'].toFixed(2)}G</div>
+                        <div className="stat-value">{meal.carbohydrate.grams.toFixed(2)}G</div>
                         <div className="stat-actions">
                             <button className="btn btn-sm">Like</button>
                             <button className="btn btn-sm ml-2">Dislike</button>

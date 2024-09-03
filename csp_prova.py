@@ -8,17 +8,17 @@ def getCsp(protein_g,carb_g,fat_g,aliments):
         
         is_consistent = {'carbohydrate': (True,0),'protein': (True,0),'fat': (True,0)}
         
-        protein_carbs = assignment['carbohydrate']['aliment'][0]['protein']
-        carb_carbs = assignment['carbohydrate']['aliment'][0]['carbohydrate']
-        fat_carbs = assignment['carbohydrate']['aliment'][0]['fat']
+        protein_carbs = assignment['carbohydrate']['protein']
+        carb_carbs = assignment['carbohydrate']['carbohydrate']
+        fat_carbs = assignment['carbohydrate']['fat']
         
-        protein_protein = assignment['protein']['aliment'][0]['protein']
-        carb_protein = assignment['protein']['aliment'][0]['carbohydrate']
-        fat_protein = assignment['protein']['aliment'][0]['fat']
+        protein_protein = assignment['protein']['protein']
+        carb_protein = assignment['protein']['carbohydrate']
+        fat_protein = assignment['protein']['fat']
         
-        protein_fat = assignment['fat']['aliment'][0]['protein'] 
-        carb_fat = assignment['fat']['aliment'][0]['carbohydrate']
-        fat_fat = assignment['fat']['aliment'][0]['fat']
+        protein_fat = assignment['fat']['protein'] 
+        carb_fat = assignment['fat']['carbohydrate']
+        fat_fat = assignment['fat']['fat']
         
         difference_protein = abs( (protein_protein + protein_carbs + protein_fat) -  protein_g)
         difference_carb = abs( (carb_carbs + carb_protein + carb_fat) -  carb_g)

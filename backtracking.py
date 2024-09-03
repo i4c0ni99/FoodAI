@@ -33,14 +33,14 @@ def alimentGranmature(ret_val,val,var,g):
 def change_grams_aliment(aliment,difference):
     if(difference < aliment['grams']):
         aliment['grams'] -= difference
-        aliment['aliment'][0]['carbohydrate'] *= aliment['grams'] / 100 
-        aliment['aliment'][0]['protein'] *=   aliment['grams'] / 100 
-        aliment['aliment'][0]['fat']  *=   aliment['grams'] / 100 
+        aliment['carbohydrate'] *= aliment['grams'] / 100 
+        aliment['protein'] *=   aliment['grams'] / 100 
+        aliment['fat']  *=   aliment['grams'] / 100 
     else :
         aliment['grams'] = 0
-        aliment['aliment'][0]['carbohydrate'] *= aliment['grams'] / 100 
-        aliment['aliment'][0]['protein'] *=   aliment['grams'] / 100 
-        aliment['aliment'][0]['fat']  *=   aliment['grams'] / 100 
+        aliment['carbohydrate'] *= aliment['grams'] / 100 
+        aliment['protein'] *=   aliment['grams'] / 100 
+        aliment['fat']  *=   aliment['grams'] / 100 
     return aliment
 def is_consistent(assignment, csp):
     
@@ -91,7 +91,16 @@ def backtrack(assignment, csp):
     
     
     ret_val,g = alimentGranmature(ret_val=ret_val, val=ret_val.copy(),var=var,g=100)
-    assignment[var] = {  'aliment' : ret_val.to_dict(orient="records"), 'grams' : g }
+    dict_aliment = ret_val.to_dict(orient="records")
+    print('QUESTO E L ALIMENTO RITORNATO')
+    print(dict_aliment)
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    """ carbohydrate: {
+            original_category: string, category: string, description: string,
+            carbohydrate: number, protein: number, fat: number, kilocalories: number, feedback: string, generic_category: string, grams: number
+        }, """
+    assignment[var] = { 'original_category': dict_aliment[0]['original_category'], 'category': dict_aliment[0]['category'], 'description' : dict_aliment[0]['description'], 'carbohydrate': dict_aliment[0]['carbohydrate'],'protein':
+        dict_aliment[0]['protein'],'fat' :dict_aliment[0]['fat'],'kilocalories':dict_aliment[0]['kilocalories'],'feedback':dict_aliment[0]['feedback'],'generic_category': dict_aliment[0]['generic_category'], 'grams' : g }
    
     
     return backtrack(assignment, csp)
