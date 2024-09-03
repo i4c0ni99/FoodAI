@@ -11,7 +11,7 @@ export const getCookie = (str: string) => {
 
 export const setUserCookie = (calMacro:{}) => {
     Cookies.set('calMacro&aliments', JSON.stringify(calMacro))
-    window.location.reload()
+    //window.location.reload()
 }
 
 export const setDietCookie = ( daily_diet:{}) => {

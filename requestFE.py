@@ -31,7 +31,7 @@ class ReqeustFE(BaseModel):
 @app.post("/colazione/")
 async def create_item(requestFE: ReqeustFE):
     if requestFE.pranzo:
-        print({'meal':trainerColazione(requestFE.colazione,requestFE.aliments)})
+        
         return {'meal':trainerColazione(requestFE.colazione,requestFE.aliments)}
         
     return "non ci sono risposte dal server"    

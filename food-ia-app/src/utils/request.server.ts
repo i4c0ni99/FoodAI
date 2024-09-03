@@ -1,12 +1,12 @@
-import { IODiet } from "../page/chatAI.page"
+
 import { axiosInstance } from "./axoisInstance.utils"
 import { getCookie } from "./cookies.service"
 
 const allData = getCookie('calMacro&aliments')
 
 
-export async function serverRequestSpuntino_mat() : Promise<IODiet> {
-    const axiosResult = await axiosInstance.post('/spuntino_mat',
+export async function serverRequestSpuntino_mat()  {
+  return  await axiosInstance.post('/spuntino_mat',
         {
             'aliments': allData.aliments,
             'tdee': allData.tdee,
@@ -22,10 +22,10 @@ export async function serverRequestSpuntino_mat() : Promise<IODiet> {
 
     )
 
-    return  axiosResult.data
+   
 }
 
-export async function serverRequestPranzo() : Promise<IODiet> {
+export async function serverRequestPranzo() {
     const axiosResult = await axiosInstance.post('/pranzo',
         {
             'aliments': allData.aliments,
@@ -45,7 +45,7 @@ export async function serverRequestPranzo() : Promise<IODiet> {
     return  axiosResult.data
 }
 
-export async function serverRequestSpuntino_pom() : Promise<IODiet> {
+export async function serverRequestSpuntino_pom() {
     const axiosResult = await axiosInstance.post('/spuntino_pom',
         {
             'aliments': allData.aliments,
@@ -64,7 +64,7 @@ export async function serverRequestSpuntino_pom() : Promise<IODiet> {
 
     return axiosResult.data
 }
-export async function serverRequestCena(): Promise<IODiet> {
+export async function serverRequestCena() {
     const axiosResult = await axiosInstance.post('/pranzo',
         {
             'aliments': allData.aliments,
