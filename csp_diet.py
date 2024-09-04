@@ -34,11 +34,10 @@ def getCsp(protein_g,carb_g,fat_g,aliments):
     
     
     
-    df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-file.csv')
+    df = pd.read_csv('/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/updated-trained-data.csv')
     
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
     for aliment in aliments:
-        print(aliment['category'])
     # Controlla se il file esiste
         if os.path.exists(file_path):
         # Cancella il file
@@ -56,13 +55,13 @@ def getCsp(protein_g,carb_g,fat_g,aliments):
     csp = {
     'variables' : ['carbohydrate', 'protein', 'fat'],
     'domains' : {
-        'carbohydrate': pd.DataFrame(df[(df['carb_percentage'] >= 50 ) & (df['feedback'] == 'approvato' ) & (df['carbohydrate'] >= 15 ) & (df['generic_category'] != 'vegetables' )] ),
-        'protein': pd.DataFrame(df[(df['protein_percentage'] >= 70)  & (df['feedback'] == 'approvato' )& (df['generic_category'] != 'vegetables' )]),
-        'fat': pd.DataFrame(df[(df['fat_percentage'] >= 40) & (df['feedback'] == 'approvato' ) & (df['generic_category'] != 'vegetables' )]) 
+        'carbohydrate': pd.DataFrame(df[(df['carb_percentage'] >= 50 )  & (df['carbohydrate'] >= 15 ) & (df['generic_category'] != 'vegetables' )] ),
+        'protein': pd.DataFrame(df[(df['protein_percentage'] >= 70)  & (df['generic_category'] != 'vegetables' )]),
+        'fat': pd.DataFrame(df[(df['fat_percentage'] >= 40)  & (df['generic_category'] != 'vegetables' )]) 
     },
     'constraints': {
       'macro':lambda  assignment : constraint_macro(assignment),
     }
     }
-
+    
     return backtracking_search(csp,[carb_g,protein_g,fat_g])

@@ -5,26 +5,26 @@ export function getAlimentMock (): Promise<{name: string,category:string,img : s
             {
                 "name": "Latticini",
                 "category": "dairy",
-                "img": "https://i0.wp.com/www.fruitbookmagazine.it/wp-content/uploads/2020/12/Mele-Royal-Gala-bio.jpg?ssl=1",
+                "img": "https://www.fondazioneveronesi.it/uploads/thumbs/2020/01/16/latte-latticini-dieta_thumb_720_480.jpg",
                 "checked": false
             }
             ,
             {
                 "name": "Uova",
                 "category": "eggs",
-                "img": "https://i0.wp.com/www.fruitbookmagazine.it/wp-content/uploads/2020/12/Mele-Royal-Gala-bio.jpg?ssl=1",
+                "img": "https://www.curarsiconilcibo.com/wp-content/uploads/2021/03/UOVA.jpg",
                 "checked": false
             },
             {
                 "name": "Oli e grassi",
                 "category": "oilsFats",
-                "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4twRk5CYj0FFyVqDOy_BvAy5diBybtfU3mg&s",
+                "img": "https://www.my-personaltrainer.it/2023/07/21/colesterolo-oli-e-grassi-orig.jpeg",
                 "checked": false
             },
             {
                 "name": "Avicoli",
                 "category": "poultry",
-                "img": "https://galleria.riza.it/files/article/fragola-buona-e-salutare.jpg",
+                "img": "https://www.chiappinellicarni.it/it/wp-content/uploads/2019/02/Le-vendite-della-carne-di-pollo-sorpassano-quelle-del-bovino-1-1.jpg",
                 "checked": false
             },
             {

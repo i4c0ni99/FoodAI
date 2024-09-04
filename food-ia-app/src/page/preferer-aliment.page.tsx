@@ -28,7 +28,9 @@ export const PrefererAliment = ({
             'colazione':allData.colazione,
             'pranzo':allData.pranzo,
             'spuntino_mat':allData.spuntino_mat,
-            'spuntino_pom':allData.spuntino_pom
+            'spuntino_pom':allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         }
         
        )
@@ -42,7 +44,9 @@ export const PrefererAliment = ({
             'colazione':allData.colazione,
             'pranzo':allData.pranzo,
             'spuntino_mat':allData.spuntino_mat,
-            'spuntino_pom':allData.spuntino_pom
+            'spuntino_pom':allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         })
         
         setDietCookie(axiosResult.data)

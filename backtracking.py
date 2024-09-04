@@ -18,10 +18,8 @@ def alimentGranmature(ret_val,val,var,g):
             kilo_prot = ret_val['protein'] * 4
             kilo_fat = ret_val['fat'] * 9
             ret_val['kilocalories'] = kilo_carb + kilo_fat + kilo_prot
-            print(ret_val.to_dict(orient="records"))
             return ret_val,g
     if current_var < targhetMacro[var]:
-        print(var,val[var])
         ret_val[var] = (g + 0.5 ) / 100 * val[var].iloc[0]
         return alimentGranmature( ret_val,val,var,g + 0.5)
     if current_var > targhetMacro[var]:
@@ -57,7 +55,7 @@ def select_unassigned_variable(assignment, csp):
             print(var)
             return var
 
-def order_domain_values(var, assignment, csp):
+def order_domain_values(var, csp):
     return csp['domains'][var]
 
 def backtrack(assignment, csp):
@@ -66,13 +64,10 @@ def backtrack(assignment, csp):
         constraint = is_consistent(assignment,csp)
         if constraint is not None:
             for item in constraint:
-                print(constraint[item][0])
                 if not constraint[item][0]:
-                    print('entro 1')
                     assignment[item] = change_grams_aliment(assignment[item],constraint[item][1])#creare ricorsione con programmazione dinamica
                     constraint =  is_consistent(assignment,csp)
                     if constraint[item][0]:
-                        print('entro')
                         return backtrack(assignment,csp)
         return assignment
     
@@ -83,7 +78,7 @@ def backtrack(assignment, csp):
     
     
     # Filtra i valori presi
-    value= order_domain_values(var, assignment, csp)
+    value= order_domain_values(var, csp)
     ret_val =  value.sample(1)                   
     
                          
@@ -92,17 +87,10 @@ def backtrack(assignment, csp):
     
     ret_val,g = alimentGranmature(ret_val=ret_val, val=ret_val.copy(),var=var,g=100)
     dict_aliment = ret_val.to_dict(orient="records")
-    print('QUESTO E L ALIMENTO RITORNATO')
-    print(dict_aliment)
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    """ carbohydrate: {
-            original_category: string, category: string, description: string,
-            carbohydrate: number, protein: number, fat: number, kilocalories: number, feedback: string, generic_category: string, grams: number
-        }, """
-    assignment[var] = { 'original_category': dict_aliment[0]['original_category'], 'category': dict_aliment[0]['category'], 'description' : dict_aliment[0]['description'], 'carbohydrate': dict_aliment[0]['carbohydrate'],'protein':
-        dict_aliment[0]['protein'],'fat' :dict_aliment[0]['fat'],'kilocalories':dict_aliment[0]['kilocalories'],'feedback':dict_aliment[0]['feedback'],'generic_category': dict_aliment[0]['generic_category'], 'grams' : g }
+    assignment[var] = {  'category': dict_aliment[0]['category'], 'description' : dict_aliment[0]['description'], 'carbohydrate': dict_aliment[0]['carbohydrate'],'protein':
+        dict_aliment[0]['protein'],'fat' :dict_aliment[0]['fat'],'kilocalories':dict_aliment[0]['kilocalories'],'generic_category': dict_aliment[0]['generic_category'], 'grams' : g }
    
-    
+    print(assignment)
     return backtrack(assignment, csp)
 
    
@@ -126,8 +114,12 @@ def backtrack(assignment, csp):
 
 def backtracking_search(csp,target_g):
     global targhetMacro
-    targhetMacro={'carbohydrate':target_g[0],'protein': target_g[1],'fat':[2]}    
+    targhetMacro={'carbohydrate':target_g[0],'protein': target_g[1],'fat':target_g[2]}    
     return backtrack({}, csp)
 
+def backtracking_changeAliment(csp,target_g,assignment):
+    global targhetMacro
+    targhetMacro={'carbohydrate':target_g[0],'protein': target_g[1],'fat':target_g[2]}    
+    return backtrack(assignment, csp)
 # Esecuzione dell'algoritmo
 

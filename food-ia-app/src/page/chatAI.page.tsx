@@ -10,42 +10,36 @@ import {
 export interface IODiet {
     meal: {
         carbohydrate: {
-            original_category: string;
             category: string;
             description: string;
             carbohydrate: number;
             protein: number;
             fat: number;
             kilocalories: number;
-            feedback: string;
             generic_category: string;
             grams: number;
         },
         protein: {
-            original_category: string;
             category: string;
             description: string;
             carbohydrate: number;
             protein: number;
             fat: number;
             kilocalories: number;
-            feedback: string;
             generic_category: string;
             grams: number;
         },
         fat: {
-            original_category: string;
             category: string;
             description: string;
             carbohydrate: number;
             protein: number;
             fat: number;
             kilocalories: number;
-            feedback: string;
             generic_category: string;
             grams: number;
         }
-    }
+    },type : string
 
 }
 
@@ -61,19 +55,18 @@ export function ChatIA() {
             try {
                 const colazione: IODiet = await getCookie('daily_diet')
                 setColazione(colazione)
-                console.log('ciaooooooo')
+                
                 const spuntinoMatData = await serverRequestSpuntino_mat();
-                console.log(spuntinoMatData)
                 setSpuntino_mat(spuntinoMatData.data);
 
                 const pranzoData = await serverRequestPranzo();
-                setPranzo(pranzoData);
+                setPranzo(pranzoData.data);
 
                 const spuntinoPomData = await serverRequestSpuntino_mat();
                 setSpuntino_pom(spuntinoPomData.data);
 
                 const cenaData = await serverRequestCena();
-                setCena(cenaData);
+                setCena(cenaData.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -81,11 +74,6 @@ export function ChatIA() {
 
         fetchData();
     }, []); // Dipendenze vuote per evitare richieste infinite
-    console.log('colazione',colazione)
-  console.log('spuntino mat',spuntino_mat)
-  console.log('pranzo ',pranzo)
-  console.log('spuntino pom',spuntino_pom)
-  console.log('cena',cena)
     return (
         <>
             <div className="grid justify-items-center w-screen">
@@ -97,14 +85,14 @@ export function ChatIA() {
                     {!colazione && (
                         <span className="loading loading-spinner loading-lg"></span>
                     )}
-                    {colazione && (<Daily_diet meal={colazione.meal} />)}
+                    {colazione && (<Daily_diet meal={colazione.meal} type={"colazione"} />)}
                 </div>
 
                 {/*  {/* Abilita questi elementi quando vuoi testarli */}
                 <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8">
                     <h1 className="text-2xl font-bold my-4">Spuntino mattutino!</h1>
                     {spuntino_mat ? (
-                        <Daily_diet meal={spuntino_mat.meal} />
+                        <Daily_diet meal={spuntino_mat.meal} type={"spuntino_mat"} />
                     ) : (
                         <span className="loading loading-spinner loading-lg"></span>
                     )}
@@ -112,7 +100,7 @@ export function ChatIA() {
                 <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8">
                     <h1 className="text-2xl font-bold my-4">Pranzo!</h1>
                     {pranzo ? (
-                        <Daily_diet meal={pranzo.meal} />
+                        <Daily_diet meal={pranzo.meal} type={"pranzo"} />
                     ) : (
                         <span className="loading loading-spinner loading-lg"></span>
                     )}
@@ -120,7 +108,7 @@ export function ChatIA() {
                 <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8">
                     <h1 className="text-2xl font-bold my-4">Spuntino pomeridiano!</h1>
                     {spuntino_pom ? (
-                        <Daily_diet meal={spuntino_pom.meal} />
+                        <Daily_diet meal={spuntino_pom.meal} type={"spuntino_pom"} />
                     ) : (
                         <span className="loading loading-spinner loading-lg"></span>
                     )}
@@ -128,7 +116,7 @@ export function ChatIA() {
                 <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8">
                     <h1 className="text-2xl font-bold my-4">Cena!</h1>
                     {cena ? (
-                        <Daily_diet meal={cena.meal} />
+                        <Daily_diet meal={cena.meal} type={"cena"} />
                     ) : (
                         <span className="loading loading-spinner loading-lg"></span>
                     )}

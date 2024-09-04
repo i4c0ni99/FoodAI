@@ -17,16 +17,18 @@ export async function serverRequestSpuntino_mat()  {
             'colazione': allData.colazione,
             'pranzo': allData.pranzo,
             'spuntino_mat': allData.spuntino_mat,
-            'spuntino_pom': allData.spuntino_pom
+            'spuntino_pom': allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         }
 
     )
-
+    
    
 }
 
 export async function serverRequestPranzo() {
-    const axiosResult = await axiosInstance.post('/pranzo',
+   return await axiosInstance.post('/pranzo',
         {
             'aliments': allData.aliments,
             'tdee': allData.tdee,
@@ -37,16 +39,18 @@ export async function serverRequestPranzo() {
             'colazione': allData.colazione,
             'pranzo': allData.pranzo,
             'spuntino_mat': allData.spuntino_mat,
-            'spuntino_pom': allData.spuntino_pom
+            'spuntino_pom': allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         }
 
     )
 
-    return  axiosResult.data
+    
 }
 
 export async function serverRequestSpuntino_pom() {
-    const axiosResult = await axiosInstance.post('/spuntino_pom',
+   return await axiosInstance.post('/spuntino_pom',
         {
             'aliments': allData.aliments,
             'tdee': allData.tdee,
@@ -57,15 +61,17 @@ export async function serverRequestSpuntino_pom() {
             'colazione': allData.colazione,
             'pranzo': allData.pranzo,
             'spuntino_mat': allData.spuntino_mat,
-            'spuntino_pom': allData.spuntino_pom
+            'spuntino_pom': allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         }
 
     )
 
-    return axiosResult.data
+    
 }
 export async function serverRequestCena() {
-    const axiosResult = await axiosInstance.post('/pranzo',
+    return await axiosInstance.post('/pranzo',
         {
             'aliments': allData.aliments,
             'tdee': allData.tdee,
@@ -76,11 +82,13 @@ export async function serverRequestCena() {
             'colazione': allData.colazione,
             'pranzo': allData.pranzo,
             'spuntino_mat': allData.spuntino_mat,
-            'spuntino_pom': allData.spuntino_pom
+            'spuntino_pom': allData.spuntino_pom,
+            'meal' : '',
+            'assignment': {}
         }
 
 
     )
 
-    return  axiosResult.data
+    
 }
