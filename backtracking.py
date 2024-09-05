@@ -3,7 +3,8 @@ import pandas as pd
 import random
 
 targhetMacro = {}
-
+import sys
+sys.setrecursionlimit(100000)
 
 def alimentGranmature(ret_val,val,var,g):
     
@@ -18,22 +19,36 @@ def alimentGranmature(ret_val,val,var,g):
             kilo_prot = ret_val['protein'] * 4
             kilo_fat = ret_val['fat'] * 9
             ret_val['kilocalories'] = kilo_carb + kilo_fat + kilo_prot
+            print(ret_val.to_dict(orient="records"),g)
             return ret_val,g
     if current_var < targhetMacro[var]:
         ret_val[var] = (g + 0.5 ) / 100 * val[var].iloc[0]
+        
         return alimentGranmature( ret_val,val,var,g + 0.5)
     if current_var > targhetMacro[var]:
         ret_val[var]= (g - 0.5) / 100 * val[var].iloc[0]
+        
         return alimentGranmature(ret_val,val,var,g - 0.5)
     return ret_val,g                                    
     
             
 def change_grams_aliment(aliment,difference):
+    aliment_change = aliment.copy()
     if(difference < aliment['grams']):
+        
+        carbs= (aliment['carbohydrate']/aliment['grams']  ) * 100 
+        prot = ( aliment['protein']/aliment['grams']  ) * 100 
+        fat = ( aliment['fat']/aliment['grams']  ) * 100 
         aliment['grams'] -= difference
-        aliment['carbohydrate'] *= aliment['grams'] / 100 
-        aliment['protein'] *=   aliment['grams'] / 100 
-        aliment['fat']  *=   aliment['grams'] / 100 
+        
+        aliment['carbohydrate'] = ( aliment['grams'] / 100 ) * carbs
+        
+        aliment['protein'] =   (aliment['grams'] / 100 ) * prot
+        
+        aliment['fat']  =   (aliment['grams'] / 100)  * fat
+        
+        aliment['kilocalories'] =  aliment['carbohydrate'] * 4 + aliment['protein'] * 4 + aliment['fat'] * 9 
+        
     else :
         aliment['grams'] = 0
         aliment['carbohydrate'] *= aliment['grams'] / 100 
@@ -52,7 +67,6 @@ def is_consistent(assignment, csp):
 def select_unassigned_variable(assignment, csp):
     for var in csp['variables']:
         if var not in assignment:
-            print(var)
             return var
 
 def order_domain_values(var, csp):
@@ -65,7 +79,7 @@ def backtrack(assignment, csp):
         if constraint is not None:
             for item in constraint:
                 if not constraint[item][0]:
-                    assignment[item] = change_grams_aliment(assignment[item],constraint[item][1])#creare ricorsione con programmazione dinamica
+                    assignment[item] = change_grams_aliment(assignment[item].copy(),constraint[item][1])#creare ricorsione con programmazione dinamica
                     constraint =  is_consistent(assignment,csp)
                     if constraint[item][0]:
                         return backtrack(assignment,csp)
@@ -79,37 +93,21 @@ def backtrack(assignment, csp):
     
     # Filtra i valori presi
     value= order_domain_values(var, csp)
-    ret_val =  value.sample(1)                   
+    choice_val =  value.sample(1)                   
     
                          
     
     
     
-    ret_val,g = alimentGranmature(ret_val=ret_val, val=ret_val.copy(),var=var,g=100)
+    ret_val,g = alimentGranmature(ret_val=choice_val.copy(), val=choice_val.copy(),var=var,g=100)
     dict_aliment = ret_val.to_dict(orient="records")
     assignment[var] = {  'category': dict_aliment[0]['category'], 'description' : dict_aliment[0]['description'], 'carbohydrate': dict_aliment[0]['carbohydrate'],'protein':
         dict_aliment[0]['protein'],'fat' :dict_aliment[0]['fat'],'kilocalories':dict_aliment[0]['kilocalories'],'generic_category': dict_aliment[0]['generic_category'], 'grams' : g }
    
-    print(assignment)
     return backtrack(assignment, csp)
 
    
-        
-    
-    """   counter = 0
-    while counter <= 500 :
-        combination= random.sample(all_indices,50)
-        selected_data = order_domain_values(var, assignment, csp).iloc[combination]
-        value=matchConstraint(selected_data)
-        if is_consistent(var, value, assignment, csp):
-            print(value)
-            assignment[var] = value
-            result = backtrack(assignment, csp)
-            print(result)
-            if result is not None:
-                    return result
-            del assignment[var] 
-        counter +=1 """
+
 
 
 def backtracking_search(csp,target_g):

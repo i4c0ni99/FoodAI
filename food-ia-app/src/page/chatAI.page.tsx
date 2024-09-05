@@ -4,7 +4,8 @@ import { getCookie } from "../utils/cookies.service";
 import {
     serverRequestCena,
     serverRequestPranzo,
-    serverRequestSpuntino_mat
+    serverRequestSpuntino_mat,
+    serverRequestSpuntino_pom
 } from "../utils/request.server";
 
 export interface IODiet {
@@ -49,7 +50,53 @@ export function ChatIA() {
     const [pranzo, setPranzo] = useState<IODiet>();
     const [spuntino_pom, setSpuntino_pom] = useState<IODiet>();
     const [cena, setCena] = useState<IODiet>();
-
+    const userData = getCookie('calMacro&aliments')
+    function totalCarbs(){
+        if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
+            const  totalKal : number = colazione.meal.carbohydrate.carbohydrate + colazione.meal.protein.carbohydrate + colazione.meal.fat.carbohydrate +
+            spuntino_mat.meal.carbohydrate.carbohydrate + spuntino_mat.meal.fat.carbohydrate + spuntino_mat.meal.protein.carbohydrate +
+            pranzo.meal.carbohydrate.carbohydrate + pranzo.meal.fat.carbohydrate + pranzo.meal.protein.carbohydrate +
+            spuntino_pom.meal.carbohydrate.carbohydrate +spuntino_pom.meal.fat.carbohydrate +spuntino_pom.meal.protein.carbohydrate +
+            cena.meal.carbohydrate.carbohydrate +cena.meal.fat.carbohydrate + cena.meal.protein.carbohydrate 
+            return totalKal.toFixed(2)
+        }
+    }
+    function totalProts(){
+        if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
+            const  totalKal : number = colazione.meal.carbohydrate.protein + colazione.meal.protein.protein + colazione.meal.fat.protein +
+            spuntino_mat.meal.carbohydrate.protein + spuntino_mat.meal.fat.protein + spuntino_mat.meal.protein.protein +
+            pranzo.meal.carbohydrate.protein + pranzo.meal.fat.protein + pranzo.meal.protein.protein +
+            spuntino_pom.meal.carbohydrate.protein +spuntino_pom.meal.fat.protein +spuntino_pom.meal.protein.protein +
+            cena.meal.carbohydrate.protein +cena.meal.fat.protein + cena.meal.protein.protein 
+            return totalKal.toFixed(2)
+        }
+    }
+    function totalFats(){
+        if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
+            const  totalKal : number = colazione.meal.carbohydrate.fat + colazione.meal.protein.fat + colazione.meal.fat.fat +
+            spuntino_mat.meal.carbohydrate.fat + spuntino_mat.meal.fat.fat + spuntino_mat.meal.protein.fat +
+            pranzo.meal.carbohydrate.fat + pranzo.meal.fat.fat + pranzo.meal.protein.fat +
+            spuntino_pom.meal.carbohydrate.fat +spuntino_pom.meal.fat.fat +spuntino_pom.meal.protein.fat +
+            cena.meal.carbohydrate.fat +cena.meal.fat.fat + cena.meal.protein.fat 
+            return totalKal.toFixed(2)
+        }
+    }
+    function kilototal(){
+        if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
+            const  totalKal : number = colazione.meal.carbohydrate.kilocalories + colazione.meal.fat.kilocalories + colazione.meal.protein.kilocalories +
+            spuntino_mat.meal.carbohydrate.kilocalories + spuntino_mat.meal.fat.kilocalories + spuntino_mat.meal.protein.kilocalories +
+            pranzo.meal.carbohydrate.kilocalories + pranzo.meal.fat.kilocalories + pranzo.meal.protein.kilocalories +
+            spuntino_pom.meal.carbohydrate.kilocalories +spuntino_pom.meal.fat.kilocalories +spuntino_pom.meal.protein.kilocalories +
+            cena.meal.carbohydrate.kilocalories +cena.meal.fat.kilocalories + cena.meal.protein.kilocalories 
+            return totalKal.toFixed(2)
+        }
+        
+            
+        }   
+    const totalCarb    = totalCarbs()
+    const totalKal = kilototal()
+    const totalProt = totalProts()
+    const totalFat =  totalFats()
     useEffect(() => {
         async function fetchData() {
             try {
@@ -62,7 +109,7 @@ export function ChatIA() {
                 const pranzoData = await serverRequestPranzo();
                 setPranzo(pranzoData.data);
 
-                const spuntinoPomData = await serverRequestSpuntino_mat();
+                const spuntinoPomData = await serverRequestSpuntino_pom();
                 setSpuntino_pom(spuntinoPomData.data);
 
                 const cenaData = await serverRequestCena();
@@ -76,10 +123,56 @@ export function ChatIA() {
     }, []); // Dipendenze vuote per evitare richieste infinite
     return (
         <>
+        {/* 'aliments': allData.aliments,
+                'tdee': allData.tdee,
+                'carb_g': allData.carb_g,
+                'protein_g': allData.protein_g,
+                'fat_g': allData.fat_g,
+                'cena': allData.cena,
+                'colazione': allData.colazione,
+                'pranzo': allData.pranzo,
+                'spuntino_mat': allData.spuntino_mat,
+                'spuntino_pom': allData.spuntino_pom,
+                'meal': type,
+                'assignment': { 'protein': meal.protein, 'fat': meal.fat  */}
             <div className="grid justify-items-center w-screen">
                 <h1 className="text-5xl font-bold mt-8">Daily diet!</h1>
             </div>
             <main className="pt-24 pl-2 pr-2 sm:size-11/12 lg:size-4/5 mx-auto">
+            <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8 ">
+                    <h1 className="text-2xl font-bold my-4">Tutta la tua giornata!</h1>
+                    <div className="stats bg-secondary text-primary-content">
+                <div className="stat">
+                    <h1 className=" mb-2 ml-6" >Kalorie e macro da assumere</h1>
+                    <div className="stats shadow">
+                        <div className="stat">
+                            <div className="stat-title">Carbs</div>
+                            <div className="stat-value">{userData['carb_g'].toFixed(2)} g</div>
+                            <div className="stat-desc">{totalCarb}</div>
+                        </div>
+
+                        <div className="stat">
+                            <div className="stat-title">Proteins</div>
+                            <div className="stat-value">{userData['protein_g'].toFixed(2)} g</div>
+                            <div className="stat-desc">{totalProt}</div>
+                        </div>
+
+                        <div className="stat">
+                            <div className="stat-title">Fat</div>
+                            <div className="stat-value">{userData['fat_g'].toFixed(2)} g</div>
+                            <div className="stat-desc">{totalFat}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="stat">
+                    <div className="stat-title">Total Kalories</div>
+                    <div className="stat-value">{totalKal} K /</div>
+                    <div className="stat-title">target Kalories</div>
+                    <div className="stat-value">{userData['tdee'].toFixed(2)}</div>
+                </div>
+            </div>
+                </div>
                 <div className="card bg-base-200 size full shadow-xl grid justify-items-center pb-8 ">
                     <h1 className="text-2xl font-bold my-4">Colazione!</h1>
                     {!colazione && (

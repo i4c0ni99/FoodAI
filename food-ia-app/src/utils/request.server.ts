@@ -71,7 +71,7 @@ export async function serverRequestSpuntino_pom() {
     
 }
 export async function serverRequestCena() {
-    return await axiosInstance.post('/pranzo',
+    return await axiosInstance.post('/cena',
         {
             'aliments': allData.aliments,
             'tdee': allData.tdee,

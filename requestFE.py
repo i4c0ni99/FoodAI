@@ -74,7 +74,6 @@ async def create_item(requestFE: ReqeustFE):
 
 @app.post("/changeAliment/")
 async def create_item(requestFE: ReqeustFE):
-    print(requestFE.meal)
     if requestFE.meal == 'colazione' and requestFE.colazione :
          return {'meal':trainerColazione(requestFE.colazione,requestFE.aliments,requestFE.assignment)}
     if requestFE.meal == 'spuntino_mat' and requestFE.spuntino_mat : 

@@ -23,11 +23,12 @@ def getCsp(protein_g,carb_g,fat_g,aliments):
         difference_protein = abs( (protein_protein + protein_carbs + protein_fat) -  protein_g)
         difference_carb = abs( (carb_carbs + carb_protein + carb_fat) -  carb_g)
         difference_fat = abs( (fat_carbs + fat_protein + fat_fat) -  fat_g)
-        if difference_carb >= 5 :
+        print(difference_carb)
+        if difference_carb >= 0.5 :
             is_consistent['carbohydrate'] = (False,difference_protein)
-        if difference_protein >= 5 :
+        if difference_protein >= 0.5 :
             is_consistent['protein'] = (False,difference_protein)
-        if difference_fat >= 5 :
+        if difference_fat >= 0.5 :
             is_consistent['fat'] = (False,difference_protein) 
                    
         return is_consistent    

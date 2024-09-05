@@ -15,7 +15,7 @@ def trainerColazione(tdee_meal,aliments,assignment):
     if assignment:
         result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-        print(result)
+        
         # Controlla se il file esiste
         if os.path.exists(file_path):
             # Cancella il file
@@ -26,7 +26,7 @@ def trainerColazione(tdee_meal,aliments,assignment):
         return result 
     result =  getCsp(protein_g,carb_g,fat_g,aliments)
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-    print(result)
+    
     # Controlla se il file esiste
     if os.path.exists(file_path):
         # Cancella il file
@@ -48,7 +48,7 @@ def trainerSpuntino_mat(tdee_meal,aliments,assignment):
     if assignment:
         result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-        print(result)
+        
         # Controlla se il file esiste
         if os.path.exists(file_path):
             # Cancella il file
@@ -59,7 +59,7 @@ def trainerSpuntino_mat(tdee_meal,aliments,assignment):
         return result 
     result =  getCsp(protein_g,carb_g,fat_g,aliments)
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-    print(result)
+    
     # Controlla se il file esiste
     if os.path.exists(file_path):
         # Cancella il file
@@ -81,7 +81,7 @@ def trainerPranzo(tdee_meal,aliments,assignment):
     if assignment:
         result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-        print(result)
+        
         # Controlla se il file esiste
         if os.path.exists(file_path):
             # Cancella il file
@@ -92,7 +92,7 @@ def trainerPranzo(tdee_meal,aliments,assignment):
         return result 
     result =  getCsp(protein_g,carb_g,fat_g,aliments)
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-    print(result)
+    
     # Controlla se il file esiste
     if os.path.exists(file_path):
         # Cancella il file
@@ -114,7 +114,7 @@ def trainerSpuntino_pom(tdee_meal,aliments,assignment):
     if assignment:
         result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-        print(result)
+        
         # Controlla se il file esiste
         if os.path.exists(file_path):
             # Cancella il file
@@ -125,7 +125,7 @@ def trainerSpuntino_pom(tdee_meal,aliments,assignment):
         return result 
     result =  getCsp(protein_g,carb_g,fat_g,aliments)
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-    print(result)
+    
     # Controlla se il file esiste
     if os.path.exists(file_path):
         # Cancella il file
@@ -147,7 +147,7 @@ def trainerCena(tdee_meal,aliments,assignment):
     if assignment:
         result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-        print(result)
+        
         # Controlla se il file esiste
         if os.path.exists(file_path):
             # Cancella il file
@@ -158,7 +158,7 @@ def trainerCena(tdee_meal,aliments,assignment):
         return result 
     result =  getCsp(protein_g,carb_g,fat_g,aliments)
     file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
-    print(result)
+    
     # Controlla se il file esiste
     if os.path.exists(file_path):
         # Cancella il file
