@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
 
 # Step 1: Caricamento del dataset
-input_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data.csv'
+input_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared_dataset.csv'
 df = pd.read_csv(input_file)
 
 # Step 2: Preparazione dei dati
@@ -61,7 +61,7 @@ df_filtered.to_csv(output_file, index=False)
 print(df_filtered)
 
 # Filtra gli alimenti con un punteggio di nutrizionalità pari o superiore a 70
-nutritional_foods = df_filtered[df_filtered['nutritional_score'] >= 50]
+nutritional_foods = df_filtered[df_filtered['nutritional_score'] >= 70]
 print(nutritional_foods[['description', 'carbohydrate', 'protein']])
 
 # Salva gli alimenti con alto punteggio in un file CSV separato

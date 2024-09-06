@@ -3,13 +3,13 @@ import numpy as np
 import os
 import json
 
-input_file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/linear_regression_data.csv'
+input_file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/new_data.csv'
 df = pd.read_csv(input_file_path)
 
 # Filtra i 5 record con il punteggio "nutritional_score" più alto per ciascuna categoria
 df_top5 = (df
            .groupby('category', group_keys=False)
-           .apply(lambda x: x.nlargest(5, 'nutritional_score'))
+           .apply(lambda x: x.nlargest(20, 'nutritional_score'))
            .reset_index(drop=True))
 
 df_output = df_top5.drop(columns=['sugar_penalty', 'fiber_bonus'])
@@ -129,7 +129,7 @@ def get_feedback_and_update(df_trained, df_linear, approved_categories_file, sta
     return df_updated
 
 # PATH
-input_file_path_linear = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/linear_regression_data.csv'
+input_file_path_linear = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/new_data.csv'
 input_file_path_trained = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/trained-data.csv'
 output_file_path_updated = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/updated-trained-data.csv'
 approved_categories_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/approved_categories.csv'

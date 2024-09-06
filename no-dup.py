@@ -45,7 +45,7 @@ def update_categories_in_csv(input_file, output_file, category_col='category'):
     print(f"File aggiornato salvato in: {output_file}")
 
 # Esempio di utilizzo
-input_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/new_data.csv'  # Sostituisci con il nome del tuo file di input
-output_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/linear_regression_data.csv'  # Sostituisci con il nome del file di output desiderato
+input_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared_food_data.csv'  # Sostituisci con il nome del tuo file di input
+output_file = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared_dataset.csv'  # Sostituisci con il nome del file di output desiderato
 
 update_categories_in_csv(input_file, output_file)

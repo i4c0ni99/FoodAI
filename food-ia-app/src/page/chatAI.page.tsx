@@ -127,7 +127,7 @@ export function ChatIA() {
             spuntinoPomData.data.meal.carbohydrate.kilocalories +spuntinoPomData.data.meal.fat.kilocalories +spuntinoPomData.data.meal.protein.kilocalories +
             cenaData.data.meal.carbohydrate.kilocalories +cenaData.data.meal.fat.kilocalories + cenaData.data.meal.protein.kilocalories 
             console.log(totalKal)
-            if(totalKal && (parseFloat(totalKal)  - userData['tdee']) <=  parseFloat(totalKal) * 0.05 ){
+            if(totalKal && Math.abs(parseFloat(totalKal)  - userData['tdee']) <=  parseFloat(totalKal) * 0.025 ){
                     console.log('entrato')
                     setColazione(colazione) 
                     setSpuntino_mat(spuntinoMatData.data);

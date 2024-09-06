@@ -56,9 +56,9 @@ def getCsp(protein_g,carb_g,fat_g,aliments):
     csp = {
     'variables' : ['carbohydrate', 'protein', 'fat'],
     'domains' : {
-        'carbohydrate': pd.DataFrame(df[(df['carb_percentage'] >= 50 )  & (df['carbohydrate'] >= 15 ) & (df['generic_category'] != 'vegetables' )] ),
-        'protein': pd.DataFrame(df[(df['protein_percentage'] >= 70)  & (df['generic_category'] != 'vegetables' )]),
-        'fat': pd.DataFrame(df[(df['fat_percentage'] >= 40)  & (df['generic_category'] != 'vegetables' )]) 
+        'carbohydrate': pd.DataFrame(df[(df['carb_percentage'] >= 50 )  & (df['carbohydrate'] >= 15 ) & (df['generic_category'] )] ),
+        'protein': pd.DataFrame(df[(df['protein_percentage'] >= 70)  & (df['generic_category'] )]),
+        'fat': pd.DataFrame(df[(df['fat_percentage'] >= 40)  & (df['generic_category']  )]) 
     },
     'constraints': {
       'macro':lambda  assignment : constraint_macro(assignment),

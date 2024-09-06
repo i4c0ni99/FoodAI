@@ -178,5 +178,5 @@ def filter_and_prepare_csv(input_csv_path, output_csv_path, min_instances=5000):
 
 # Esecuzione della funzione con percorsi di esempio
 input_csv_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/food-data.csv'
-output_csv_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared-food-data.csv'
+output_csv_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/prepared_food_data.csv'
 filter_and_prepare_csv(input_csv_path, output_csv_path)

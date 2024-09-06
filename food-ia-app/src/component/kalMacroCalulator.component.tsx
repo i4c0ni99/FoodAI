@@ -41,9 +41,9 @@ export const KalMacroCalculator: React.FC<ICalc> = ({ onSubmission }) => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Calcola ora!</h1>
                     <p className="py-6">
-                        Calcola ora le tue kalorie giornaliere e macro che ti permetteranno di raggiungere i tuoi obbiettivi
+                        Calcola ora il piano alimentare in base al tuo obiettivo
                     </p>
-                    <h1 className="text-3xl font-bold">Seleziona obbiettivo e stile di vita!</h1>
+                    <h1 className="text-3xl font-bold">Seleziona obiettivo e stile di vita</h1>
                     <div className=" mt-2 flex w-1/2">
                         <input type="radio" name="obbiettivo" aria-label="Dimagrimento" value="dimagrimento" onChange={handleChange} className="btn glass h-16 basis-3/4" />
                         <div className="avatar basis-1/4">
