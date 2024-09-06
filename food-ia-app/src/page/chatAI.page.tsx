@@ -50,6 +50,10 @@ export function ChatIA() {
     const [pranzo, setPranzo] = useState<IODiet>();
     const [spuntino_pom, setSpuntino_pom] = useState<IODiet>();
     const [cena, setCena] = useState<IODiet>();
+    const totalCarb = totalCarbs()
+    const totalKal = kilototal()
+    const totalProt = totalProts()
+    const totalFat =  totalFats()
     const userData = getCookie('calMacro&aliments')
     function totalCarbs(){
         if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
@@ -81,46 +85,66 @@ export function ChatIA() {
             return totalKal.toFixed(2)
         }
     }
+
+   
     function kilototal(){
         if(colazione && spuntino_mat && pranzo && spuntino_pom && cena){
-            const  totalKal : number = colazione.meal.carbohydrate.kilocalories + colazione.meal.fat.kilocalories + colazione.meal.protein.kilocalories +
+            return (colazione.meal.carbohydrate.kilocalories + colazione.meal.fat.kilocalories + colazione.meal.protein.kilocalories +
             spuntino_mat.meal.carbohydrate.kilocalories + spuntino_mat.meal.fat.kilocalories + spuntino_mat.meal.protein.kilocalories +
             pranzo.meal.carbohydrate.kilocalories + pranzo.meal.fat.kilocalories + pranzo.meal.protein.kilocalories +
             spuntino_pom.meal.carbohydrate.kilocalories +spuntino_pom.meal.fat.kilocalories +spuntino_pom.meal.protein.kilocalories +
-            cena.meal.carbohydrate.kilocalories +cena.meal.fat.kilocalories + cena.meal.protein.kilocalories 
-            return totalKal.toFixed(2)
+            cena.meal.carbohydrate.kilocalories +cena.meal.fat.kilocalories + cena.meal.protein.kilocalories ).toFixed(2)
+            
         }
-        
+       
             
         }   
-    const totalCarb    = totalCarbs()
-    const totalKal = kilototal()
-    const totalProt = totalProts()
-    const totalFat =  totalFats()
+
+  
+   
+    const [iterator,setIterator]= useState<number>(0)
     useEffect(() => {
         async function fetchData() {
             try {
+                
                 const colazione: IODiet = await getCookie('daily_diet')
-                setColazione(colazione)
+                
                 
                 const spuntinoMatData = await serverRequestSpuntino_mat();
-                setSpuntino_mat(spuntinoMatData.data);
-
+               
+    
                 const pranzoData = await serverRequestPranzo();
-                setPranzo(pranzoData.data);
-
+                
+    
                 const spuntinoPomData = await serverRequestSpuntino_pom();
-                setSpuntino_pom(spuntinoPomData.data);
-
+                
+    
                 const cenaData = await serverRequestCena();
-                setCena(cenaData.data);
+                
+            const totalKal = colazione.meal.carbohydrate.kilocalories + colazione.meal.fat.kilocalories + colazione.meal.protein.kilocalories +
+            spuntinoMatData.data.meal.carbohydrate.kilocalories + spuntinoMatData.data.meal.fat.kilocalories + spuntinoMatData.data.meal.protein.kilocalories +
+            pranzoData.data.meal.carbohydrate.kilocalories + pranzoData.data.meal.fat.kilocalories + pranzoData.data.meal.protein.kilocalories +
+            spuntinoPomData.data.meal.carbohydrate.kilocalories +spuntinoPomData.data.meal.fat.kilocalories +spuntinoPomData.data.meal.protein.kilocalories +
+            cenaData.data.meal.carbohydrate.kilocalories +cenaData.data.meal.fat.kilocalories + cenaData.data.meal.protein.kilocalories 
+            console.log(totalKal)
+            if(totalKal && (parseFloat(totalKal)  - userData['tdee']) <=  parseFloat(totalKal) * 0.05 ){
+                    console.log('entrato')
+                    setColazione(colazione) 
+                    setSpuntino_mat(spuntinoMatData.data);
+                    setPranzo(pranzoData.data);
+                    setSpuntino_pom(spuntinoPomData.data);
+                    setCena(cenaData.data);
+               }
+               else setIterator(iterator + 1)
+                
+                
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         }
 
         fetchData();
-    }, []); // Dipendenze vuote per evitare richieste infinite
+    }, [iterator]); // Dipendenze vuote per evitare richieste infinite
     return (
         <>
         {/* 'aliments': allData.aliments,

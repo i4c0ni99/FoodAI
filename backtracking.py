@@ -81,7 +81,11 @@ def backtrack(assignment, csp):
                 if not constraint[item][0]:
                     assignment[item] = change_grams_aliment(assignment[item].copy(),constraint[item][1])#creare ricorsione con programmazione dinamica
                     constraint =  is_consistent(assignment,csp)
-                    if constraint[item][0]:
+                    if  constraint[item][0]:
+                        del assignment[item]
+                        print('assignment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                        print(assignment)
+                        print('assignment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
                         return backtrack(assignment,csp)
         return assignment
     

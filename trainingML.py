@@ -112,7 +112,7 @@ def trainerSpuntino_pom(tdee_meal,aliments,assignment):
     carb_g = carb_kal / 4
     fat_g= fat_kal / 9
     if assignment:
-        result =  getCsp_change_aliment(protein_g,carb_g,fat_g,aliments,assignment)
+        result =  getCsp_change_aliment(protein_g,carb_g,fat_g,tdee_meal,aliments,assignment)
         file_path = '/Users/i4c0ni99/UNIVAQ/develop/FoodAI/csv/training-for-category.csv'
         
         # Controlla se il file esiste
