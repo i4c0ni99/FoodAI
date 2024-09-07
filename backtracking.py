@@ -19,7 +19,6 @@ def alimentGranmature(ret_val,val,var,g):
             kilo_prot = ret_val['protein'] * 4
             kilo_fat = ret_val['fat'] * 9
             ret_val['kilocalories'] = kilo_carb + kilo_fat + kilo_prot
-            print(ret_val.to_dict(orient="records"),g)
             return ret_val,g
     if current_var < targhetMacro[var]:
         ret_val[var] = (g + 0.5 ) / 100 * val[var].iloc[0]
@@ -78,15 +77,11 @@ def backtrack(assignment, csp):
         constraint = is_consistent(assignment,csp)
         if constraint is not None:
             for item in constraint:
-                if not constraint[item][0]:
-                    assignment[item] = change_grams_aliment(assignment[item].copy(),constraint[item][1])#creare ricorsione con programmazione dinamica
+                if constraint[item][0] == False:
+                    assignment[item] = change_grams_aliment(assignment[item].copy(),constraint[item][1])
                     constraint =  is_consistent(assignment,csp)
-                    if  constraint[item][0]:
-                        del assignment[item]
-                        print('assignment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                        print(assignment)
-                        print('assignment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                        return backtrack(assignment,csp)
+                
+                    
         return assignment
     
     var = select_unassigned_variable(assignment, csp)
