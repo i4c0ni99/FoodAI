@@ -5,10 +5,10 @@ CREAM,0,0,da verificare
 SOUR CREAM,0,0,da verificare
 MILK,1,0,completata
 WHEY,0,0,da verificare
-YOGURT,0,0,da verificare
+YOGURT,3,0,da verificare
 CHEESE FD,1,0,da verificare
 CHEESE SPRD,0,0,da verificare
-CREAM SUBSTITUTE,0,0,da verificare
+CREAM SUBSTITUTE,0,4,da verificare
 DESSERT TOPPING,0,0,da verificare
 SOUR CRM,0,0,da verificare
 MILK SHAKES,0,0,da verificare
@@ -22,8 +22,8 @@ EGG SUBSTITUTE,0,0,da verificare
 EGG MIX,0,0,da verificare
 COUSCOUS,0,0,da verificare
 NOODLES,0,0,da verificare
-MACARONI,0,0,da verificare
-PASTA,0,0,da verificare
+MACARONI,5,0,da approvato
+PASTA,5,0,da approvato
 RICE,1,0,completata
 SEMOLINA,0,0,da verificare
 SPAGHETTI,0,0,da verificare
