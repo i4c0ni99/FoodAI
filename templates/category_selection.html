@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleziona Categorie di Cibo</title>
+    <link rel="stylesheet" href="/static/style_category.css">
+<body>
+    <div class="container">
+        <header>
+            <h1>Seleziona Categorie di Cibo</h1>
+            <p>Scegli almeno 5 categorie per creare il tuo piano nutrizionale.</p>
+        </header>
+
+        <main>
+            <form id="food-form" action="/submit" method="post">
+                <div class="grid">
+                    <!-- Genera dinamicamente le card in base alla lista di categorie passata dal backend -->
+                    {% for category in categories %}
+                    <div class="card" onclick="toggleSelection(this)">
+                        <img src="{{ category.img }}" alt="{{ category.name }}">
+                        <h2>{{ category.name }}</h2>
+                        <input type="checkbox" name="categories" value="{{ category }}" class="hidden">
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button id="submit-btn" type="submit" disabled>Continua</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        let selectedCategories = 0;
+
+        function toggleSelection(card) {
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+
+            if (checkbox.checked) {
+                card.classList.add('selected');
+
+                selectedCategories++;
+            } else {
+                card.classList.remove('selected');
+                selectedCategories--;
+            }
+
+            document.getElementById('submit-btn').disabled = selectedCategories < 5;
+        }
+    </script>
+</body>
+</html>

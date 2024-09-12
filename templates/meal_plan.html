@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Pasti Giornaliera</title>
+    <link rel="stylesheet" href="/static/style_meal.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Prima Card: Target Calorico e Macronutrienti -->
+        <div class="card">
+            <header>
+                <h1>Obiettivi Nutrizionali</h1>
+                <p>Kalorie: {{kal_target}}Kcal | Proteine: {{protein_g}}g | Carboidrati: {{carb_g}}g | Grassi: {{fat_g}}g</p>
+                <p>Raggiunti: {{totalKal}} Kcal | Proteine: {{totalProt}}g | Carboidrati: {{totalCarb}}g | Grassi: {{totalFat}}g</p>
+            </header>
+        </div>
+
+        <!-- Card 1: Colazione -->
+        <div class="card">
+            <header>
+                <h2>Colazione</h2>
+            </header>
+            <ul>
+                <li>
+                    <div>
+                        <strong>{{colazione.carbohydrate.description}}</strong> - {{colazione.carbohydrate.grams}}g
+                        <p>Kalorie: {{colazione.carbohydrate.kilocalories}} Kcal | Proteine: {{colazione.carbohydrate.protein}}g | Carboidrati: {{colazione.carbohydrate.carbohydrate}}g | Grassi: {{colazione.carbohydrate.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeCarbs('colazione',{{colazione}})" value="colazione">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{colazione.protein.description}}</strong> - {{colazione.protein.grams}}g
+                        <p>Kalorie: {{colazione.protein.kilocalories}} Kcal | Proteine: {{colazione.protein.protein}}g | Carboidrati: {{colazione.protein.carbohydrate}}g | Grassi: {{colazione.protein.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeProtein('colazione',{{colazione}})" value="colazione">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{colazione.fat.description}}</strong> - {{colazione.fat.grams}}g
+                        <p>Kalorie: {{colazione.fat.kilocalories}} Kcal | Proteine: {{colazione.fat.protein}}g | Carboidrati: {{colazione.fat.carbohydrate}}g | Grassi: {{colazione.fat.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeFat('colazione',{{colazione}})" value="colazione">Dislike</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Card 2: Spuntino Mattutino -->
+        <div class="card">
+            <header>
+                <h2>Spuntino Mattutino</h2>
+            </header>
+            <ul>
+                <li>
+                    <div>
+                        <strong>{{spuntino_mat.carbohydrate.description}}</strong> - {{spuntino_mat.carbohydrate.grams}}g
+                        <p>Kalorie: {{spuntino_mat.carbohydrate.kilocalories}} Kcal | Proteine: {{spuntino_mat.carbohydrate.protein}}g | Carboidrati: {{spuntino_mat.carbohydrate.carbohydrate}}g | Grassi: {{spuntino_mat.carbohydrate.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeCarbs('spuntino_mat',{{spuntino_mat}})" value="spuntino_mat">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{spuntino_mat.protein.description}}</strong> - {{spuntino_mat.protein.grams}}g
+                        <p>Kalorie: {{spuntino_mat.protein.kilocalories}} Kcal | Proteine: {{spuntino_mat.protein.protein}}g | Carboidrati: {{spuntino_mat.protein.carbohydrate}}g | Grassi: {{spuntino_mat.protein.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeProtein('spuntino_mat',{{spuntino_mat}})" value="spuntino_mat">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{spuntino_mat.fat.description}}</strong> - {{spuntino_mat.fat.grams}}g
+                        <p>Kalorie: {{spuntino_mat.fat.kilocalories}} Kcal | Proteine: {{spuntino_mat.fat.protein}}g | Carboidrati: {{spuntino_mat.fat.carbohydrate}}g | Grassi: {{spuntino_mat.fat.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeFat('spuntino_mat',{{spuntino_mat}})" value="spuntino_mat">Dislike</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Card 3: Pranzo -->
+        <div class="card">
+            <header>
+                <h2>Pranzo</h2>
+            </header>
+            <ul>
+                <li>
+                    <div>
+                        <strong>{{pranzo.carbohydrate.description}}</strong> - {{pranzo.carbohydrate.grams}}g
+                        <p>Kalorie: {{pranzo.carbohydrate.kilocalories}} Kcal | Proteine: {{pranzo.carbohydrate.protein}}g | Carboidrati: {{pranzo.carbohydrate.carbohydrate}}g | Grassi: {{pranzo.carbohydrate.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeCarbs('pranzo',{{pranzo}})" value="pranzo">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{pranzo.protein.description}}</strong> - {{pranzo.protein.grams}}g
+                        <p>Kalorie: {{pranzo.protein.kilocalories}} Kcal | Proteine: {{pranzo.protein.protein}}g | Carboidrati: {{pranzo.protein.carbohydrate}}g | Grassi: {{pranzo.protein.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeProtein('pranzo',{{pranzo}})" value="pranzo">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{pranzo.fat.description}}</strong> - {{pranzo.fat.grams}}g
+                        <p>Kalorie: {{pranzo.fat.kilocalories}} Kcal | Proteine: {{pranzo.fat.protein}}g | Carboidrati: {{pranzo.fat.carbohydrate}}g | Grassi: {{pranzo.fat.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeFat('pranzo',{{pranzo}})" value="pranzo">Dislike</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Card 4: Spuntino Pomeridiano -->
+        <div class="card">
+            <header>
+                <h2>Spuntino Pomeridiano</h2>
+            </header>
+            <ul>
+                <li>
+                    <div>
+                        <strong>{{spuntino_pom.carbohydrate.description}}</strong> - {{spuntino_pom.carbohydrate.grams}}g
+                        <p>Kalorie: {{spuntino_pom.carbohydrate.kilocalories}} Kcal | Proteine: {{spuntino_pom.carbohydrate.protein}}g | Carboidrati: {{spuntino_pom.carbohydrate.carbohydrate}}g | Grassi: {{spuntino_pom.carbohydrate.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeCarbs('spuntino_pom',{{spuntino_pom}})" value="spuntino_pom">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{spuntino_pom.protein.description}}</strong> - {{spuntino_pom.protein.grams}}g
+                        <p>Kalorie: {{spuntino_pom.protein.kilocalories}} Kcal | Proteine: {{spuntino_pom.protein.protein}}g | Carboidrati: {{spuntino_pom.protein.carbohydrate}}g | Grassi: {{spuntino_pom.protein.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeProtein('spuntino_pom',{{spuntino_pom}})" value="spuntino_pom">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{spuntino_pom.fat.description}}</strong> - {{spuntino_pom.fat.grams}}g
+                        <p>Kalorie: {{spuntino_pom.fat.kilocalories}} Kcal | Proteine: {{spuntino_pom.fat.protein}}g | Carboidrati: {{spuntino_pom.fat.carbohydrate}}g | Grassi: {{spuntino_pom.fat.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeFat('spuntino_pom',{{spuntino_pom}})">Dislike</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Card 5: Cena -->
+        <div class="card">
+            <header>
+                <h2>Cena</h2>
+            </header>
+            <ul>
+                <li>
+                    <div>
+                        <strong>{{cena.carbohydrate.description}}</strong> - {{cena.carbohydrate.grams}}g
+                        <p>Kalorie: {{cena.carbohydrate.kilocalories}} Kcal | Proteine: {{cena.carbohydrate.protein}}g | Carboidrati: {{cena.carbohydrate.carbohydrate}}g | Grassi: {{cena.carbohydrate.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeCarbs('cena',{{cena}})" value="cena">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{cena.protein.description}}</strong> - {{cena.protein.grams}}g
+                        <p>Kalorie: {{cena.protein.kilocalories}} Kcal | Proteine: {{cena.protein.protein}}g | Carboidrati: {{cena.protein.carbohydrate}}g | Grassi: {{cena.protein.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeProtein('cena',{{cena}})" value="cena">Dislike</button>
+                </li>
+                <li>
+                    <div>
+                        <strong>{{cena.fat.description}}</strong> - {{cena.fat.grams}}g
+                        <p>Kalorie: {{cena.fat.kilocalories}} Kcal | Proteine: {{cena.fat.protein}}g | Carboidrati: {{cena.fat.carbohydrate}}g | Grassi: {{cena.fat.fat}}g</p>
+                    </div>
+                    <button class="dislike-btn" onclick="dislikeFat('cena',{{cena}})" value="cena">Dislike</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Nutrizione Quotidiana</p>
+    </footer>
+</body>
+<script>
+    async function dislikeCarbs(value,assignment) {
+        console.log(value)
+        let data = fetch('/changeAliment/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ meal: value,assignment : { 'protein': assignment.protein, 'fat': assignment.fat } })
+        })
+        if(data) window.location.href='/daily_diet_changed'
+        
+        
+    }
+    async function dislikeProtein(value,assignment) {
+        console.log(value)
+       let data = fetch('/changeAliment/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ meal: value,assignment : { 'carbohydrate': assignment.carbohydrate, 'fat': assignment.fat } })
+        })
+        if(data) window.location.href='/daily_diet_changed'
+    }
+    async function dislikeFat(value,assignment) {
+        console.log(value)
+        let data = fetch('/changeAliment/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ meal: value,assignment : { 'protein': assignment.protein, 'carbohydrate': assignment.carbohydrate } })
+        })           
+       if(data) window.location.href='/daily_diet_changed'
+    }
+</script>
+</html>

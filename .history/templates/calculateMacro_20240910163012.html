@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Nutritional Form</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Stile per il pulsante del menu */
+        .menu-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .menu-btn:hover {
+            background-color: #4a90e2;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Stile per la barra laterale (light mode) */
+        .side-bar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f9f9f9;
+            border-right: 2px solid #eee;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .side-bar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #333;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-bar a:hover {
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 5px;
+            margin-left: 10px;
+            padding-left: 25px;
+            transition: margin-left 0.3s, padding-left 0.3s;
+        }
+
+        .side-bar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Animazione smooth per il menu */
+        .side-bar a,
+        .side-bar .close-btn {
+            transition: 0.5s ease-in-out;
+        }
+
+        /* Aggiunge ombra alla barra */
+        .side-bar {
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Stile per il resto della pagina */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #4a90e2;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ab8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-btn" onclick="openNav()">☰</button>
+
+    <div id="mySidebar" class="side-bar">
+        <span class="close-btn" onclick="closeNav()">×</span>
+        {% for crono in cronos %}
+        <a href="#">pasto{{ crono.id }}</a>
+        <a href="#">Profilo</a>
+        <a href="#">Impostazioni</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Piano Nutrizionale Personalizzato</h1>
+            <p>Compila i tuoi dati per ottenere un piano nutrizionale su misura.</p>
+        </header>
+
+        <main>
+            <form action="/categories_list" method="post">
+                <div class="form-group">
+                    <label for="eta">Età</label>
+                    <input type="number" id="eta" name="eta" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" name="peso" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="altezza">Altezza (cm)</label>
+                    <input type="number" id="altezza" name="altezza" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">Obiettivo</label>
+                    <select id="goal" name="goal" required>
+                        <option value="dimagrimento">Perdita di peso</option>
+                        <option value="mantenimento">Mantenimento</option>
+                        <option value="massa">Aumento di massa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stile_di_vita">Stile di vita</label>
+                    <select id="stile_di_vita" name="stile_di_vita" required>
+                        <option value="sedentario">Sedentario</option>
+                        <option value="attivo">Attivo</option>
+                        <option value="molto attivo">Molto attivo</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Crea il mio piano</button>
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Nutritional Planner. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
+</body>
+</html>

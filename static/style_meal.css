@@ -1,0 +1,123 @@
+ /* Reset delle impostazioni di base */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile del body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 100%);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container principale */
+.container {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Stile della card */
+.card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+header h1, header h2 {
+    font-size: 1.8rem;
+    color: #4a90e2;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Stile della lista degli alimenti */
+ul {
+    list-style: none;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #eaeaea;
+    transition: background-color 0.3s ease;
+}
+
+ul li:hover {
+    background-color: #f0f4f8;
+}
+
+ul li p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Pulsante dislike */
+.dislike-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dislike-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Stile del footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #4a90e2;
+    color: white;
+    width: 100%;
+    font-size: 0.9rem;
+    border-radius: 10px;
+}
+
+/* Responsive per schermi piccoli */
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+
+    header h1, header h2 {
+        font-size: 1.5rem;
+    }
+
+    ul li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
