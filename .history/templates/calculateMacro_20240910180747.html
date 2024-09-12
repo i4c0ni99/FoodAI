@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Nutritional Form</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    
+
+    <div class="container">
+        <header>
+            <h1>Piano Nutrizionale Personalizzato</h1>
+            <p>Compila i tuoi dati per ottenere un piano nutrizionale su misura.</p>
+        </header>
+
+        <main>
+            <form action="/categories_list" method="post">
+                <div class="form-group">
+                    <label for="eta">Età</label>
+                    <input type="number" id="eta" name="eta" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" name="peso" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="altezza">Altezza (cm)</label>
+                    <input type="number" id="altezza" name="altezza" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">Obiettivo</label>
+                    <select id="goal" name="goal" required>
+                        <option value="dimagrimento">Perdita di peso</option>
+                        <option value="mantenimento">Mantenimento</option>
+                        <option value="massa">Aumento di massa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stile_di_vita">Stile di vita</label>
+                    <select id="stile_di_vita" name="stile_di_vita" required>
+                        <option value="sedentario">Sedentario</option>
+                        <option value="attivo">Attivo</option>
+                        <option value="molto attivo">Molto attivo</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Crea il mio piano</button>
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Nutritional Planner. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
+</body>
+</html>

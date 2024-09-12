@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendi il risultato</title>
+    <style>
+        /* Reset delle impostazioni di base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Stile generale del body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Contenitore principale */
+        .container {
+            text-align: center;
+        }
+
+        /* Titolo */
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Cerchio di caricamento */
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* Animazione del cerchio */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Testo del caricamento */
+        #loading-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #555;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Animazione del testo */
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Contenitore del risultato nascosto */
+        #result {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #3498db;
+        }
+
+        /* Stile del pulsante per migliorare l'accessibilità */
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #3498db;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1d6fa5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Attendi che il risultato sia pronto...</h1>
+        <div class="loader"></div>
+        <div id="loading-text">Caricamento in corso...</div>
+        <div id="result"></div>
+        <button onclick="checkResult()">Aggiorna manualmente</button>
+    </div>
+
+    <script>
+        // Funzione per ottenere il risultato dal server
+        async function getResult() {
+             window.location.href = "/daily_diet"
+        }
+
+        // Funzione per il pulsante di aggiornamento manuale
+       
+            getResult();
+        
+    </script>
+
+</body>
+</html>

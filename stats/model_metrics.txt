@@ -1,0 +1,9 @@
+Mean Squared Error (MSE): 1.0740039832543875e-28
+Mean Absolute Error (MAE): 6.656912009446786e-15
+Root Mean Squared Error (RMSE): 1.0363416344306483e-14
+Median Absolute Error (MedAE): 0.0
+Mean Absolute Percentage Error (MAPE): 1.4068228940005095e-16
+R-squared (R2): 1.0
+Explained Variance: 1.0
+Max Error: 4.263256414560601e-14
+Mean Squared Log Error (MSLE): 1.3791961839619849e-31
