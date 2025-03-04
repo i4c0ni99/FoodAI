@@ -50,7 +50,8 @@ pip install -r requirements.txt
      ```
    - Avviare il frontend:
      ```
-   - Aprire `localhost:8000` nel browser e inserire le informazioni richieste.
+     Aprire `localhost:8000` nel browser e inserire le informazioni richieste.
+     ```
 
 3. **Generazione del piano alimentare**:
    - Inserire le informazioni personali tramite la form nell'interfaccia.
@@ -59,7 +60,7 @@ pip install -r requirements.txt
 
 ## Contributi
 
-Siamo aperti a contributi esterni, ouoi creare un branch e proporre modifiche tramite una pull request.
+Siamo aperti a contributi esterni, puoi creare un branch e proporre modifiche tramite una pull request.
 
 ## Licenza
 
