@@ -37,7 +37,7 @@ file requirements.txt:
 ```
 pip install -r requirements.txt
 ```
-
+ 
 ## Istruzioni per l'uso
 
 1. **Preparazione del dataset**:
